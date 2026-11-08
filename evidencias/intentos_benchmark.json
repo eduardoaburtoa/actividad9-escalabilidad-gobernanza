@@ -1,0 +1,5 @@
+{
+  "pilot": "Primera corrida breve: 452 solicitudes por repetición; usada sólo para depurar, no para dimensionar.",
+  "failed_attempt": "La ampliación a 4520 solicitudes por repetición con conexión nueva por petición agotó puertos efímeros del cliente en macOS: OSError 49 Cannot assign requested address. No es un fallo de disponibilidad cloud ni métrica atribuible al modelo. No se completó esa corrida.",
+  "correction": "Session HTTP persistente por hilo, sin compartir sesiones entre hilos; cierre garantizado del monitor. Se repiten todas las configuraciones bajo el mismo protocolo."
+}

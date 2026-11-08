@@ -1,0 +1,136 @@
+{
+  "assumptions": {
+    "currency": "USD",
+    "region": "us-central1",
+    "billing": "Cloud Run instance-based, on demand",
+    "checked_date": "2026-11-08",
+    "source": "https://cloud.google.com/run/pricing",
+    "cpu_second": 1.8e-05,
+    "gib_second": 2e-06,
+    "month_hours": 730,
+    "frontend_cpu": 1,
+    "frontend_gib": 0.5,
+    "observability_allowance": 10,
+    "storage_allowance": 5,
+    "labor_hours": 8,
+    "labor_usd_hour": 40,
+    "requests_month": [
+      100000,
+      1000000,
+      5000000
+    ],
+    "scenarios": [
+      {
+        "name": "Base cloud simulada",
+        "cpu": 2,
+        "gib": 4,
+        "min_instances": 2,
+        "extra_instances": 0,
+        "extra_hours": 0
+      },
+      {
+        "name": "Rediseño estable",
+        "cpu": 1,
+        "gib": 1,
+        "min_instances": 2,
+        "extra_instances": 0,
+        "extra_hours": 0
+      },
+      {
+        "name": "Rediseño con picos",
+        "cpu": 1,
+        "gib": 1,
+        "min_instances": 2,
+        "extra_instances": 2,
+        "extra_hours": 40
+      },
+      {
+        "name": "Límite seis instancias todo el mes",
+        "cpu": 1,
+        "gib": 1,
+        "min_instances": 6,
+        "extra_instances": 0,
+        "extra_hours": 0
+      }
+    ],
+    "exclusions": "Sin free tier, compromisos, descuentos, impuestos, egress, balanceador externo, soporte o licencias. Observabilidad y almacenamiento son provisiones académicas, no tarifas. Mano de obra es supuesto, no factura. No se ha contratado nube."
+  },
+  "scenarios": [
+    {
+      "name": "Base cloud simulada",
+      "cpu": 2,
+      "gib": 4,
+      "min_instances": 2,
+      "extra_instances": 0,
+      "extra_hours": 0,
+      "api_instance_hours": 1460,
+      "api_usd": 231.26399999999998,
+      "frontend_usd": 49.932,
+      "infra_usd": 296.19599999999997,
+      "tco_usd": 616.1959999999999,
+      "usd_per_1000_requests": {
+        "100000": 2.9619599999999995,
+        "1000000": 0.29619599999999996,
+        "5000000": 0.05923919999999999
+      },
+      "infra_saving_percent": 0.0
+    },
+    {
+      "name": "Rediseño estable",
+      "cpu": 1,
+      "gib": 1,
+      "min_instances": 2,
+      "extra_instances": 0,
+      "extra_hours": 0,
+      "api_instance_hours": 1460,
+      "api_usd": 105.12,
+      "frontend_usd": 49.932,
+      "infra_usd": 170.05200000000002,
+      "tco_usd": 490.052,
+      "usd_per_1000_requests": {
+        "100000": 1.7005200000000003,
+        "1000000": 0.170052,
+        "5000000": 0.0340104
+      },
+      "infra_saving_percent": 42.588016043430684
+    },
+    {
+      "name": "Rediseño con picos",
+      "cpu": 1,
+      "gib": 1,
+      "min_instances": 2,
+      "extra_instances": 2,
+      "extra_hours": 40,
+      "api_instance_hours": 1540,
+      "api_usd": 110.88000000000001,
+      "frontend_usd": 49.932,
+      "infra_usd": 175.812,
+      "tco_usd": 495.812,
+      "usd_per_1000_requests": {
+        "100000": 1.7581200000000001,
+        "1000000": 0.17581200000000002,
+        "5000000": 0.0351624
+      },
+      "infra_saving_percent": 40.64335777660737
+    },
+    {
+      "name": "Límite seis instancias todo el mes",
+      "cpu": 1,
+      "gib": 1,
+      "min_instances": 6,
+      "extra_instances": 0,
+      "extra_hours": 0,
+      "api_instance_hours": 4380,
+      "api_usd": 315.36,
+      "frontend_usd": 49.932,
+      "infra_usd": 380.29200000000003,
+      "tco_usd": 700.292,
+      "usd_per_1000_requests": {
+        "100000": 3.8029200000000003,
+        "1000000": 0.380292,
+        "5000000": 0.07605840000000001
+      },
+      "infra_saving_percent": -28.392010695620495
+    }
+  ]
+}
