@@ -1,0 +1,22 @@
+INFO:     Uvicorn running on http://127.0.0.1:56717 (Press CTRL+C to quit)
+INFO:     Started parent process [73207]
+INFO:     Started server process [73210]
+INFO:     Started server process [73209]
+INFO:     Waiting for application startup.
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Application startup complete.
+INFO:     Received SIGTERM, exiting.
+INFO:     Terminated child process [73209]
+INFO:     Terminated child process [73210]
+INFO:     Waiting for child process [73209]
+INFO:     Shutting down
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [73210]
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [73209]
+INFO:     Waiting for child process [73210]
+INFO:     Stopping parent process [73207]

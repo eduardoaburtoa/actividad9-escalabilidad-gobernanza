@@ -1,0 +1,108 @@
+{
+  "scope": "Auditoría exploratoria de 452 noticias históricas; longitud no es atributo protegido. Sin edad, sexo ni etnia no se acredita fairness demográfica. Bootstrap estratificado por grupo y clase positiva; intervalos descriptivos, no prueba confirmatoria.",
+  "overall": {
+    "n": 452,
+    "positives": 61,
+    "tn": 366,
+    "fp": 25,
+    "fn": 10,
+    "tp": 51,
+    "accuracy": 0.922566371681416,
+    "precision": 0.6710526315789473,
+    "recall": 0.8360655737704918,
+    "f1": 0.7445255474452555,
+    "auc": 0.9547608066747725,
+    "selection_rate": 0.168141592920354,
+    "fpr": 0.0639386189258312,
+    "tpr_ci95": [
+      0.7238692567544832,
+      0.9084408651425705
+    ],
+    "fpr_ci95": [
+      0.04367996976830531,
+      0.0926825614340807
+    ]
+  },
+  "groups": [
+    {
+      "group": "1-15 palabras",
+      "n": 134,
+      "positives": 12,
+      "tn": 116,
+      "fp": 6,
+      "fn": 3,
+      "tp": 9,
+      "accuracy": 0.9328358208955224,
+      "precision": 0.6,
+      "recall": 0.75,
+      "f1": 0.6666666666666666,
+      "auc": 0.9596994535519126,
+      "selection_rate": 0.11194029850746269,
+      "fpr": 0.04918032786885246,
+      "tpr_ci95": [
+        0.46768966087934005,
+        0.9110599603710386
+      ],
+      "fpr_ci95": [
+        0.022731860243578907,
+        0.10315337961351129
+      ]
+    },
+    {
+      "group": "16-30 palabras",
+      "n": 233,
+      "positives": 35,
+      "tn": 185,
+      "fp": 13,
+      "fn": 4,
+      "tp": 31,
+      "accuracy": 0.927038626609442,
+      "precision": 0.7045454545454546,
+      "recall": 0.8857142857142857,
+      "f1": 0.7848101265822784,
+      "auc": 0.9623376623376623,
+      "selection_rate": 0.1888412017167382,
+      "fpr": 0.06565656565656566,
+      "tpr_ci95": [
+        0.7404820521187976,
+        0.9546489414551025
+      ],
+      "fpr_ci95": [
+        0.03876769113322558,
+        0.10907893711387512
+      ]
+    },
+    {
+      "group": "31+ palabras",
+      "n": 85,
+      "positives": 14,
+      "tn": 65,
+      "fp": 6,
+      "fn": 3,
+      "tp": 11,
+      "accuracy": 0.8941176470588236,
+      "precision": 0.6470588235294118,
+      "recall": 0.7857142857142857,
+      "f1": 0.7096774193548387,
+      "auc": 0.9195171026156942,
+      "selection_rate": 0.2,
+      "fpr": 0.08450704225352113,
+      "tpr_ci95": [
+        0.5241027622679172,
+        0.9242875166308363
+      ],
+      "fpr_ci95": [
+        0.039305972354112026,
+        0.17236240459133007
+      ]
+    }
+  ],
+  "recall_gap": 0.13571428571428568,
+  "recall_gap_bootstrap_ci95": [
+    0.0357142857142857,
+    0.42886904761904604
+  ],
+  "bootstrap_seed": 42,
+  "bootstrap_repetitions": 2000,
+  "threshold": 0.2
+}

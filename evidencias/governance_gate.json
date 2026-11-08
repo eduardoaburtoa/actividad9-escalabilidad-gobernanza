@@ -1,0 +1,11 @@
+{
+  "production_authorized": false,
+  "blockers": [
+    "commercial_license_cleared",
+    "mexico_spanish_external_validation",
+    "privacy_legal_approval",
+    "cloud_load_failover_validated",
+    "fairness_demographic_evidence"
+  ],
+  "note": "Control acad\u00e9mico de aprobaci\u00f3n; no sustituye firma de responsables ni certifica cumplimiento."
+}

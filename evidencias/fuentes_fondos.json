@@ -1,0 +1,493 @@
+{
+  "scope": "Consulta de accesibilidad de los DICI enumerados en la continuidad del proyecto; no certifica exhaustividad del catálogo actual ni actualiza los gastos por serie del CSV histórico.",
+  "results": [
+    {
+      "fondo": "BBVALIQ",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007832.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "123d615a4e3fa973018748c2fcade8b87544d72c5261347bc49df496324b9aea"
+    },
+    {
+      "fondo": "BBVAGUB",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007836.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3722c3937feb5f746de9fde2c6add8f3a0ba08a66436fb245b58e8b3ab6a9bbb"
+    },
+    {
+      "fondo": "BBVARF",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009662.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "bb4bff798c04449fa6f4b9c3bbf2c1377dedbd7ab88b16198503d7b90357b3a0"
+    },
+    {
+      "fondo": "B+EDUCA",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007833.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "af219b1a30a67a6e11f9c9d63528a9a336ba13da0c5e81c0e2be92c04c61926d"
+    },
+    {
+      "fondo": "BBVACOR",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007835.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3b10c78383c77d6407b968ccba9f9ce7aaa9c32ce08e501ce078b7fc47b72817"
+    },
+    {
+      "fondo": "BBVADCB",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00029860.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "e447e8a175d1f6afe6e6e6eb61a87fcd6bed8f9017b1d0fe8f7f54070b432643"
+    },
+    {
+      "fondo": "BBVADD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00029882.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "36d3e98648d5956c686919dc14dc2a1479ac94c3b03b3642d5f284814411ed9b"
+    },
+    {
+      "fondo": "BBVADLP",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007203.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "f191c174b07bd9bb746814630c3446e7e816a3dc552015cedef980698da55b3b"
+    },
+    {
+      "fondo": "BBVADOL",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007039.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "b795bdd0593cffa8bc6825990bb8651d1594bc88d024d19da6e7f43bf07fa3f7"
+    },
+    {
+      "fondo": "BBVAEUR",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007018.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "2a4b7f56d0dcbe5937c833857b4ceec8234405327c7fba55652033f4aa86b141"
+    },
+    {
+      "fondo": "BBVAGB2",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00006867.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "98b90c6c6d21fa7c1e528248ed4ae3f21251fe13149ab2aba06ef8a333afe9f9"
+    },
+    {
+      "fondo": "BBVAGLP",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00008245.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "4dadadc683bb2753f41629f1456fa14f16e5e7ddb5c0b5972601770f65c0e40a"
+    },
+    {
+      "fondo": "BBVAGBP",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00011504.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "f628bef38f3babbbfd76d2ae7e582ae6b556f2f99b33cbab001b4df24e7913e3"
+    },
+    {
+      "fondo": "BBVAGOB",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00006868.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "bfb3c70e6d6eca60ce19cb6660ec27ab3ed828bbc1de59a977c887ee93b87a63"
+    },
+    {
+      "fondo": "BBVAMRF",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009661.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "98e65be711fa6d30eb07841ecd41359701d68a2c4b3c813170b2f3d6c9b95dca"
+    },
+    {
+      "fondo": "BBVAPYM",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00006869.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "d6939f226114d90260982ec2ff0cd99e21e54286658e91a80ee6c8924696f426"
+    },
+    {
+      "fondo": "BBVAPZO",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007204.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "2ed6e7d694b27197d91b103016c4ac306d773f3ee64147c31b6f17c4229a969b"
+    },
+    {
+      "fondo": "BBVATES",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00006870.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3f2d605527571993d5817676734328f43ba57f3f3e9f446cc21c234191c52e47"
+    },
+    {
+      "fondo": "BBVAUDI",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007710.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "ac41c6a53c34ddc927d9a194f72df642236e5dc731b0c55eb56fbd3d1a13051b"
+    },
+    {
+      "fondo": "BBVADGA",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00032827.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "6c759d6707ca1005384e8dc7c90303b0b605ac8fc0ab3c927490996c2a5a1080"
+    },
+    {
+      "fondo": "BBVAUMS",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00008246.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "4649774197a16babe2189d5053b252a0ea12c6f051139c6d857d969ee7252119"
+    },
+    {
+      "fondo": "BBVAGB3",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00031054.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "8a6d06016a1ce97d5f6446eab67eeeb4e7f967d51e9f3e61e4ade12affbbf598"
+    },
+    {
+      "fondo": "BBVAPC",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009650.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "4a3553b2b75663deaf57896fff870cf676332ea1980ac8f583b587b095018c1f"
+    },
+    {
+      "fondo": "BBVAPCD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00017952.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "e6a2052b78606911f4391ea33638657b421bb0a5081af164eab3cb1a9dd356b2"
+    },
+    {
+      "fondo": "B+RVUS2",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007442.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "b5bf7a82b2cf793f72bc390abdae9e0f73d4a29c8d526dec26a6c7fd8e78cf79"
+    },
+    {
+      "fondo": "BBVARFG",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007440.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "4d42fb6b1b74172d435c59158d8164b7984c14de9e6ce4f8e0662163dbdb78dc"
+    },
+    {
+      "fondo": "BBVARFL",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007438.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "185053b351b37fbdfe4e70756cd78daaeb3a052a53e298962beac793e1d8bc14"
+    },
+    {
+      "fondo": "BBVACAP",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00017553.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "5f1dde4ce64cbb56166f2b88ad4a838251aa081a83dfd7e8a555dd1de5558e95"
+    },
+    {
+      "fondo": "BBVACRE",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007379.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "7e13e1188e90801e4d9f6eb2a92433d1c3b074719eac1cdceb12e1343db7e792"
+    },
+    {
+      "fondo": "BBVARVE",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007436.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "76c540d67fed2870178122fe7994b7c45622cc7509bcf59d93d90a641fec1da5"
+    },
+    {
+      "fondo": "BBVAEMG",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009281.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3c0bb3f97edee6fbb94c3ebcff8b83d7add6f3c03b5cba7511d6ccc64e382807"
+    },
+    {
+      "fondo": "BBVAESG",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00027569.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "bfceb0bdb97f527a8a360278bc3dbdb88b86d23eb3909f4cbc24e015ca5d9033"
+    },
+    {
+      "fondo": "BBVANDQ",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007838.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3f84cb03b8c745fc4a93ebcb0575ef5e6d1c6aac6919139946c76b70f55f9ec9"
+    },
+    {
+      "fondo": "BBVARV",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009654.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "299fb34e6e052a07f6a2992c94dd669ee8d564c7d038c6f0344d1458490497ed"
+    },
+    {
+      "fondo": "BBVADIG",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00012311.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "0334834a0aa845cb5b50b5128b5d72fe343c293f1611524b9ced461eae95d374"
+    },
+    {
+      "fondo": "BBVASIC",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007360.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "1a90d7113a2fd4e18d228c863113d9074f150172f39c5060ecc8291b2a324de0"
+    },
+    {
+      "fondo": "BBVAUS",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007437.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "ad0538ee5d8c4196c9d2003ecb19e2052054553fa49eb86f4e51be57d3da427c"
+    },
+    {
+      "fondo": "BBVANSH",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00007361.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "e7f4bcf439be542bfff9d0f3465d6955e92f608050977a498ea1792281c1597c"
+    },
+    {
+      "fondo": "BBVAGL3",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020043.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "dbf9f93dea7a3675cd124070735848338823d1e843468193842aac9713087679"
+    },
+    {
+      "fondo": "BBVAGL4",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009659.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "2cc4b51506e15c018d860d597025f9a2d089c3244b6622c6d6b948d94040ad94"
+    },
+    {
+      "fondo": "BBVAGL5",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020049.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "25a501b4bd3d6ef65fdb76cb8a63eb25d6d5e9cd0ddc972d463a8a3dd1ccbbcb"
+    },
+    {
+      "fondo": "BBVAMA2",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020025.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "a4d9c7c5d4f2ce526302913d82faaf68430205b231d72a6221016e269a7ba51b"
+    },
+    {
+      "fondo": "BBVAMA3",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020031.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "55bd6f2f3ddc6765c7b7237e75289b5774935b2e85a9f554f5a9e4711c622040"
+    },
+    {
+      "fondo": "BBVAMLT",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00008873.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "dbcc387fdc3dacd86f57c5c12f65309bc0ca2584d8925da8af4cc6c872f7bdb5"
+    },
+    {
+      "fondo": "BBVACR",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009652.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "693906c241f09fce78c1c3b663f80a44799ed0be7919828b56d8f090eddf9859"
+    },
+    {
+      "fondo": "BBVAGF",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00009651.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "b9a3e98486e285307317d9e78ebefcbd7f150279ebe407ad1545ba58df6373c0"
+    },
+    {
+      "fondo": "BBVACRD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00017962.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "be69358f471acd395feab79ae29bf4ad14f917bb339ab7c937be971677aae27f"
+    },
+    {
+      "fondo": "BBVAGFD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00017957.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "ed1f76bd57b62c7a7ac212d65c284d73ea7af5df96c6fbf4f59ad2ae696c4ec4"
+    },
+    {
+      "fondo": "BBVAC+",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00022880.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "e3cf0b023300712da863ff25d04fc42db4a416430a0846857067b7191c7874db"
+    },
+    {
+      "fondo": "BBVAC",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00019989.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "8db20f4d304d23354c0c9fcd7f0276a2e5cd92bddc03af13e9f891b8cff8d6b4"
+    },
+    {
+      "fondo": "BBVAM",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00019995.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "da8ca02071eaf1a9c825880e5ddcb47d1c9c9894bc278aa17d2cd557dd7bdcc6"
+    },
+    {
+      "fondo": "BBVAA",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00019983.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3f8c7b0c4b985e206e42b88ec4efb60c955ca8172fe3a14bb4ed640f6e21dba9"
+    },
+    {
+      "fondo": "BBVACD+",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00022881.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "325b8e88b8fd09b2b48e8583ad8d424c0ac8cb409de1b5d7b0efa7f99b1d6795"
+    },
+    {
+      "fondo": "BBVACD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020007.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "91ddd3dab355732752921f2f51fd72b8af2a7903374d79003214d1bfaf4e7a9a"
+    },
+    {
+      "fondo": "BBVAMD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020013.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "290a28d8dcff0162edeb0323973ab2e76f0b67f1c3d8a47639de17e4dc035db5"
+    },
+    {
+      "fondo": "BBVAAD",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00020001.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "9a92f083d0ada127bd2427ee36affe58dfb868ec4a5b4f0151ef53b69016dbc7"
+    },
+    {
+      "fondo": "BBVA34",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00033908.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "b39cb5267ccb4ef1b8cf00c71835a97ee7e67eed372000ef4945833b1b25a41d"
+    },
+    {
+      "fondo": "BBVA44",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00033917.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "7d9c525d05f19c6ad3a7f3cfd15baf0c3e73b88a3d9567c48999ec8b77a39cf8"
+    },
+    {
+      "fondo": "BBVA50",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00033926.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "41fdb4ae543426b6c3b7fa73ab42c35aa08a55306b9b7b73b859443c3fce04f6"
+    },
+    {
+      "fondo": "BBVA56",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00033935.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "3f67606af60e7ca228029fc585199ba65193d1fb5118f8526b10cfb4fa4ceaf4"
+    },
+    {
+      "fondo": "BBVA66",
+      "url_dici": "https://portal.bbva.mx/siabinternet/Repositorio/import/doctos/analisis/00033944.pdf",
+      "checked_date": "2026-11-08",
+      "http_status": 200,
+      "is_pdf": true,
+      "sha256": "491c9462efbf27ee7c96bebd3439d13d65f028cce54638d06abe175a65592908"
+    }
+  ]
+}

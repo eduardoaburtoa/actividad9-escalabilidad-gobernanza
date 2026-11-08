@@ -1,0 +1,125 @@
+{
+  "scope": "Inferencia offline, incluye vectorizaci\u00f3n, sin HTTP ni cola; latencia amortizada no es p95 interactivo. Mismo modelo, cinco repeticiones, orden fijo; posibles efectos de calentamiento.",
+  "runs": [
+    {
+      "batch_size": 1,
+      "repeat": 0,
+      "seconds": 0.37968433275818825,
+      "throughput_texts_second": 1190.4626053871648,
+      "amortized_ms_text": 0.8400095857482042,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 1,
+      "repeat": 1,
+      "seconds": 0.38131408393383026,
+      "throughput_texts_second": 1185.3745220657413,
+      "amortized_ms_text": 0.8436152299421024,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 1,
+      "repeat": 2,
+      "seconds": 0.3780159577727318,
+      "throughput_texts_second": 1195.7167169957106,
+      "amortized_ms_text": 0.8363184906476367,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 1,
+      "repeat": 3,
+      "seconds": 0.378994083032012,
+      "throughput_texts_second": 1192.6307566174364,
+      "amortized_ms_text": 0.8384824845840974,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 1,
+      "repeat": 4,
+      "seconds": 0.3811397906392813,
+      "throughput_texts_second": 1185.9165878269118,
+      "amortized_ms_text": 0.8432296253081444,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 32,
+      "repeat": 0,
+      "seconds": 0.02556208334863186,
+      "throughput_texts_second": 17682.439800987195,
+      "amortized_ms_text": 0.05655328174476075,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 32,
+      "repeat": 1,
+      "seconds": 0.025025375187397003,
+      "throughput_texts_second": 18061.66727233049,
+      "amortized_ms_text": 0.055365874308400446,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 32,
+      "repeat": 2,
+      "seconds": 0.024813875555992126,
+      "throughput_texts_second": 18215.614847429577,
+      "amortized_ms_text": 0.054897954769894085,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 32,
+      "repeat": 3,
+      "seconds": 0.02482433430850506,
+      "throughput_texts_second": 18207.940417767433,
+      "amortized_ms_text": 0.0549210936028873,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 32,
+      "repeat": 4,
+      "seconds": 0.024615706875920296,
+      "throughput_texts_second": 18362.259604340583,
+      "amortized_ms_text": 0.05445952848654932,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 128,
+      "repeat": 0,
+      "seconds": 0.01564066857099533,
+      "throughput_texts_second": 28899.020393425286,
+      "amortized_ms_text": 0.03460324905087463,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 128,
+      "repeat": 1,
+      "seconds": 0.015383625403046608,
+      "throughput_texts_second": 29381.890689465494,
+      "amortized_ms_text": 0.03403456947576683,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 128,
+      "repeat": 2,
+      "seconds": 0.015393666923046112,
+      "throughput_texts_second": 29362.724441133865,
+      "amortized_ms_text": 0.03405678522797813,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 128,
+      "repeat": 3,
+      "seconds": 0.015388000756502151,
+      "throughput_texts_second": 29373.536377622597,
+      "amortized_ms_text": 0.034044249461287944,
+      "max_delta": 0.0
+    },
+    {
+      "batch_size": 128,
+      "repeat": 4,
+      "seconds": 0.01546366699039936,
+      "throughput_texts_second": 29229.806893838624,
+      "amortized_ms_text": 0.0342116526336269,
+      "max_delta": 0.0
+    }
+  ]
+}

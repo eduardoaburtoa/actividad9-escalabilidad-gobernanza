@@ -1,0 +1,19 @@
+{
+  "status": "propuesta_no_desplegada",
+  "service": "Cloud Run API",
+  "region": "us-central1",
+  "billing": "instance-based",
+  "vcpu_per_instance": 1,
+  "gib_per_instance": 1,
+  "minimum_instances": 2,
+  "maximum_instances": 6,
+  "concurrency": 8,
+  "availability_slo_monthly": 0.999,
+  "p95_target_ms": 250,
+  "cloud_test_required_rps": 10,
+  "cloud_test_required_minutes": 60,
+  "infra_budget_usd_month": 300,
+  "budget_alert_fractions": [0.8, 1.0],
+  "automatic_shutdown_on_budget": false,
+  "production_authorized": false
+}
