@@ -83,7 +83,9 @@ La reconstrucción editorial usa `scripts/build_reports.py`, la plantilla reteni
 
 ## Continuidad del proyecto
 
-[Actividad 4](https://github.com/eduardoaburtoa/motor-senales-nlp) → [Actividad 5](https://github.com/eduardoaburtoa/actividad5-mlflow-portafolios) → [Actividad 6](https://github.com/eduardoaburtoa/actividad6-evaluacion-portafolios) → [Fase II](https://github.com/eduardoaburtoa/fase2-despliegue-portafolios) → [Actividad 8](https://github.com/eduardoaburtoa/actividad8-observabilidad-portafolios) → **Actividad 9**.
+[Fase I · business case](documentos/FaseI_contexto.md) → [Actividad 4](https://github.com/eduardoaburtoa/motor-senales-nlp) → [Actividad 5](https://github.com/eduardoaburtoa/actividad5-mlflow-portafolios) → [Actividad 6](https://github.com/eduardoaburtoa/actividad6-evaluacion-portafolios) → [Fase II](https://github.com/eduardoaburtoa/fase2-despliegue-portafolios) → [Actividad 8](https://github.com/eduardoaburtoa/actividad8-observabilidad-portafolios) → **Actividad 9**.
+
+La Fase I definió el business case, el ROI esperado y el alcance de 3,600 clientes. No hay una Actividad 7 publicada en la cadena consultada; no atribuyo una razón que no está documentada. Fase II se conserva con su nombre de entrega y no se renombra como Actividad 7.
 
 Conservo la SVM calibrada y umbral 0.20; no reentreno ni ajusto con el test. La evidencia de incidentes de Actividad 8 permanece histórica: recuperación no significa haber cumplido su presupuesto de latencia.
 
@@ -94,3 +96,5 @@ Mi decisión es avanzar por etapas y mantener revisión humana: eficiencia econ�
 ## Alcance económico de Fase I
 
 24 asesores × 150 clientes: 3,600 clientes evaluados diariamente, aproximadamente 108,000 evaluaciones en treinta días bajo una inferencia por evaluación. Los escenarios 100 mil, un millón y cinco millones representan referencia inicial, crecimiento regional (~9.26 veces) y techo hipotético (~46.30 veces). No demuestran capacidad cloud. [Cálculo y FIX fechado](evidencias/negocio_fase1.json) · [Cifras originales del autor](config/fase1.json). La infraestructura NLP es sólo un componente del presupuesto integral; esta actividad no valida el ROI de Fase I.
+
+**La IA no sustituye el criterio del banquero; lo aumenta.**
