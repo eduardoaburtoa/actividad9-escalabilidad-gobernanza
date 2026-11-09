@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling, business, fairness_report, frameworks
+from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -42,7 +42,16 @@ def tab(d,heads,rows):
     for run in pa.runs:run.font.size=Pt(9);run.font.color.rgb=RGBColor.from_string('FFFFFF' if i==0 else '072146')
  d.add_paragraph()
 def img(d,path,caption,width=6):d.add_picture(str(path),width=Inches(width));p(d,caption)
+def reference(d,text):
+ pa=d.add_paragraph(text)
+ pa.paragraph_format.left_indent=Inches(0.3)
+ pa.paragraph_format.first_line_indent=Inches(-0.3)
+ pa.paragraph_format.space_after=Pt(8)
+ return pa
 refs=[
+'Beyer, B., Murphy, N. R., Rensin, D. K., Kawahara, K., & Thorne, S. (Eds.). (2018). The site reliability workbook: Practical ways to implement SRE. O’Reilly Media. https://sre.google/workbook/implementing-slos/',
+'Banco de México. (2026, 6 de noviembre). Tipo de cambio FIX [Serie diaria]. https://www.banxico.org.mx/apps/dao-web/4/52/Fix48.html',
+
 'Google Cloud. (s. f.). Cloud Run pricing. Tarifas consultadas el 8 de noviembre de 2026. https://cloud.google.com/run/pricing',
 'Google Cloud. (s. f.). About instance autoscaling. https://docs.cloud.google.com/run/docs/about-instance-autoscaling',
 'FinOps Foundation. (s. f.). FinOps Framework. https://www.finops.org/framework/',
@@ -116,7 +125,7 @@ p(d,'Concluyo que el rediseño tiene una hipótesis económica favorable y evide
 h(d,'Cobertura de la rúbrica')
 tab(d,['Criterio de 25 puntos','Secciones y evidencia'],[['Arquitectura y escalabilidad','Diagnóstico, arquitectura, rediseño y Arquitectura.pdf'],['Costos y desempeño','Benchmark de nueve corridas, modelo FinOps y anexo'],['Auditoría responsable','Sesgos, auditoría legal, riesgos y governance_gate.json'],['Plan integral','Etapas, responsables, criterios de salida y rollback']])
 page(d,'Referencias')
-for ref in refs:p(d,ref)
+for ref in refs:reference(d,ref)
 d.save(O/'Reporte_tecnico.docx')
 a=base('Anexo técnico de desempeño costos y gobernanza')
 h(a,'Cómo verificar este anexo')
@@ -128,6 +137,8 @@ tab(a,['P / C / rep','rps','p95 ms','RSS MiB','CPU núcleos'],[[f"{r['workers']}
 p(a,'P significa procesos y C concurrencia del cliente. CPU 1.0 equivale a un núcleo ocupado. Cada fila contiene 4,520 solicitudes exitosas; el máximo cambio de probabilidad es 1.11 × 10⁻¹⁶, atribuible a precisión numérica. No se midió escalado horizontal entre servidores.')
 p(a,'Throughput = solicitudes completadas / segundos transcurridos. p95 = percentil 95 de tiempos cliente HTTP por repetición. Reporto media de los tres p95 al resumir, no un p95 combinado. RSS es el máximo muestreado de la suma de procesos del servidor; puede duplicar memoria compartida.')
 img(a,E/'rendimiento.png','Figura 1. Comparación local. Tres repeticiones cortas no reemplazan prueba de estabilidad.',6)
+page(a,'Métricas de desempeño por dimensión')
+performance_blocks(a,h,p,tab,R)
 page(a,'Costeo reproducible y sensibilidad')
 p(a,'API USD = 3600 × horas instancia × (CPU × 0.000018 + GiB × 0.000002). Horas instancia = mínimas × 730 + extras × horas pico. Infraestructura = API + frontend + 10 + 5. TCO = infraestructura + 8 × 40. Esta tabla se expresa en USD; la conversión a MXN y su fuente se presentan en el apartado de Fase I.')
 tab(a,['Escenario','Horas API','API USD','Infra USD','TCO USD'],[[s['name'],s['api_instance_hours'],f"{s['api_usd']:.2f}",f"{s['infra_usd']:.2f}",f"{s['tco_usd']:.2f}"] for s in c['scenarios']])
@@ -147,9 +158,12 @@ tab(a,['Lote','Textos por segundo media','ms amortizados por texto'],[[i,f'{r.th
 p(a,'Cinco repeticiones por tamaño y orden fijo, con posible calentamiento. El cronómetro incluye vectorización e inferencia, sin HTTP ni espera de cola. Todos los tamaños conservaron las probabilidades. Usaría lotes para preparación offline; no inferiría que un usuario recibe una respuesta en el tiempo amortizado.')
 tab(a,['Puerta pendiente','Evidencia necesaria para evaluar'],[['Licencia comercial','Autorización o sustitución del corpus y análisis del modelo derivado'],['Validación México y español','Test externo, revisión de etiquetas y métricas con incertidumbre'],['Privacidad y jurídico','Expediente de finalidad, aviso, seguridad y transferencias'],['Carga y failover cloud','Logs de carga sostenida, pérdida de réplica y recuperación'],['Fairness demográfica','Evaluación lícita con muestra suficiente o limitación de uso acordada']])
 p(a,'La salida actual es production_authorized=false. Las pruebas automatizadas verifican bloqueos, integridad y controles económicos; no equivalen a una certificación ni a una auditoría legal externa.')
+page(a,'Conclusiones')
+p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad.')
 page(a,'Fuentes y reproducibilidad')
 p(a,'Entorno de medición: macOS ARM64, Python 3.12.14, diez CPU lógicas y 16 GiB. requirements.txt fija versiones. Para verificar: instalar dependencias, ejecutar pytest pruebas -q y python scripts/verify.py. Para repetir: python scripts/benchmark.py, python scripts/analyze.py, python scripts/costs.py y python scripts/governance.py. La nueva ejecución sobrescribe evidencias locales; conservar un commit antes de repetir.')
 p(a,'El test y modelo se reutilizan con su atribución y licencia en modelos/LICENSE_DATASET.txt. No se usan clientes reales. El directorio contexto conserva la simulación de 150 personajes y las fuentes públicas de fondos como continuidad, separado del benchmark y del análisis de fairness.')
-for ref in refs[:6]+[refs[9],refs[10]]:p(a,ref)
+h(a,'Referencias')
+for ref in refs:reference(a,ref)
 a.save(O/'Anexo_tecnico.docx')
 print('Documentos generados')
