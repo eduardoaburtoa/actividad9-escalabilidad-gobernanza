@@ -6,6 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
+from revision_sections import scaling
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -69,6 +70,8 @@ page(d,'Sistema actual y sistema propuesto')
 img(d,O/'Arquitectura.png','Figura 1. Arquitectura propia. El bloque superior representa antecedentes locales; el inferior es una propuesta no desplegada.',6.3)
 p(d,'Conservaría el artefacto inmutable y su versión en cada resultado. El flujo termina en revisión documentada del banquero. La arquitectura no contiene un enlace que ejecute órdenes de inversión.')
 page(d,'Rediseño de escalabilidad e inferencia')
+scaling(d,h,p,tab,R)
+page(d,'Decisiones de capacidad e inferencia')
 tab(d,['Decisión','Justificación y límite'],[['Escalado vertical','Evaluar 1 frente a 2 CPU y 1 frente a 2 GiB por réplica en nube. Más RAM no acelera necesariamente TF IDF. El ensayo local de dos procesos no impone cuotas cloud.'],['Escalado horizontal','Proponer Cloud Run con dos réplicas mínimas y seis máximas, concurrencia inicial ocho. Réplicas sin estado, revisiones versionadas y rollback. No se midió autoscaling real.'],['Disponibilidad','Dos réplicas reducen dependencia de un proceso, pero no acreditan tolerancia regional. Probar pérdida de réplica y restauración; documentar dependencia del proveedor.'],['Inferencia','Cargar una vez el modelo; conexiones persistentes; lotes offline de hasta 128. Mantener ruta interactiva sin espera de lote.'],['Cache','Sólo textos públicos con clave hash de texto, versión y umbral. TTL propuesto 15 min; medir hit rate. No implementada ni incluida en ahorro.'],['Optimización descartada','No usar GPU, poda ni cuantización por moda: este modelo pequeño no tiene beneficio demostrado y debe conservar sus predicciones.']])
 p(d,'Cloud Run considera CPU y concurrencia para autoscaling; la utilización de memoria requiere vigilancia propia. Una aplicación que no aproveche varias CPU puede quedar mal dimensionada si se observa sólo su promedio. Probaría una CPU por réplica antes de ampliar verticalmente. El máximo de instancias limita expansión, pero puede generar cola y rechazos; no es una garantía exacta de gasto (Google Cloud, s. f.).')
 p(d,'En lotes offline, tamaño 128 obtuvo alrededor de 29 mil textos por segundo frente a 1.19 mil con tamaño uno, sin cambios de probabilidad. Es tiempo amortizado sin HTTP; no equivale a latencia p95 de un usuario. No traslado esa aceleración al cálculo del SLA.')
