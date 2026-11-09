@@ -17,3 +17,22 @@ def business(d,h,p,tab,root):
  p(d,f"La infraestructura estable de USD {x['infra_month_usd']:.2f}/mes equivale a MXN {x['infra_month_mxn']:,.2f}/mes y MXN {x['infra_year_mxn']:,.2f}/año al FIX de 18.6297 del 6 de noviembre de 2026 (Banco de México). Representa {x['share_of_fase1_opex_percent']:.3f} % de los MXN 4,769,996 anuales de operación de Fase I y MXN {x['infra_mxn_client_month']:.4f} por cliente al mes. Comparo un componente NLP con el presupuesto integral; no afirmo que lo sustituya ni que la diferencia sea ahorro realizable.")
  p(d,'Conservo inversión de piloto de MXN 9,083,448, beneficio anual esperado a plena operación de MXN 40,540,443, ROI a tres años de 298.6 % y recuperación en mes 13. El caso conservador conserva 38.8 % y mes 25. Por cada peso de corretaje, el cliente conserva $1.04 según Fase I; el umbral de rotación es 3.0 puntos porcentuales por encima del 2 % de costo. Son hipótesis del business case, no resultados de esta prueba.')
  p(d,'La Actividad 9 dimensiona infraestructura; no valida que el ROI de 298.6 % se materialice. Lo mediré en el piloto con seis asesores de los meses 1 a 9. Propongo dos réplicas mínimas de 1 CPU/1 GiB y máximo dos en piloto en sombra; al aprobar el paso a 24 asesores, mantendría dos mínimas y permitiría hasta seis. Ambas configuraciones requieren ensayo cloud. Seis permanentes costarían USD 380.29 y excederían el presupuesto académico de USD 300.')
+
+def fairness_report(d,h,p,tab,root):
+ import json
+ f=json.loads((root/'evidencias/fairness.json').read_text())
+ h(d,'Evaluación de fairness por grupo')
+ interval=lambda x: f'{x[0]:.3f}–{x[1]:.3f}'
+ tab(d,['Longitud / n','Selección','TPR [IC 95 %]','FPR [IC 95 %]'],[[f"{x['group']} / {x['n']}",f"{x['selection_rate']:.3f}",f"{x['recall']:.3f} [{interval(x['tpr_ci95'])}]",f"{x['fpr']:.3f} [{interval(x['fpr_ci95'])}]"] for x in f['groups']])
+ p(d,'Observo mayor TPR en textos de 16–30 palabras y menor TPR en textos de 1–15 palabras. Los intervalos Wilson al 95 % se traslapan entre los tres grupos, tanto en TPR como en FPR. Ese traslape no prueba ausencia de diferencias ni reemplaza una prueba estadística; señala incertidumbre relevante con sólo 12, 35 y 14 positivos. La diferencia máxima de TPR es 13.57 puntos porcentuales; su intervalo bootstrap descriptivo es [3.57, 42.89] puntos. Distingo Wilson por grupo del bootstrap de la brecha.')
+ p(d,'Esta fairness exploratoria usa longitud como condición técnica, no como atributo protegido ni proxy validado de una población. Sin edad, sexo o etnia no acredito equidad demográfica. La mayor tasa de falsas alertas en textos largos supone más revisión humana, pero no demuestra discriminación. Mantengo la evaluación demográfica pendiente, con base legítima y muestra suficiente antes de ampliar el uso.')
+
+def frameworks(d,h,p,tab,root):
+ h(d,'Controles y marcos de gobernanza')
+ tab(d,['Marco / función','Control concreto y evidencia','Decisión'],[
+ ['NIST AI RMF · Govern','Responsables y cinco puertas en config/governance.json','Comité aprueba; producción bloqueada mientras falte una puerta.'],
+ ['NIST AI RMF · Map','Uso limitado a noticias inglesas y revisión humana; contexto y licencia documentados','No extrapolar a rendimiento de fondos ni a clientes mexicanos.'],
+ ['NIST AI RMF · Measure','Métricas, fairness con IC y benchmark preservados en evidencias/','Evaluar errores, grupos y dominio externo antes del piloto.'],
+ ['NIST AI RMF · Manage','Canario, pausa y rollback propuestos; evidencia operativa de Actividad 8','Conservar incidente, responsable y criterio de recuperación.'],
+ ['ISO/IEC 42001 · sistema de gestión','Registro de riesgos, responsables, evaluación de impacto, seguimiento y revisión de cambios','Propuesta de controles del ciclo de vida; no certificación ni auditoría de conformidad.']])
+ p(d,'CC BY-NC-SA 3.0 restringe el uso comercial del corpus. Mantengo el bloqueo comercial hasta que jurídico resuelva los derechos del dato y del modelo derivado o se sustituya el corpus con nueva validación. NIST AI RMF e ISO/IEC 42001 son referencias de trabajo; no sustituyen obligaciones legales mexicanas ni acreditan cumplimiento institucional.')
