@@ -90,3 +90,7 @@ Conservo la SVM calibrada y umbral 0.20; no reentreno ni ajusto con el test. La 
 Los [150 clientes ficticios](contexto/clientes_simulados.csv), de MXN 5–20 millones, mantienen la continuidad didáctica sin datos reales. No forman parte del entrenamiento ni de la auditoría de fairness. El 1 % de compra y 1 % de venta son supuestos académicos, no tarifas BBVA verificadas. Las fichas y comisiones heredadas requieren verificar serie y vigencia antes de cualquier uso real; [consulta de accesibilidad](evidencias/fuentes_fondos.json) no acredita exhaustividad del catálogo ni actualiza sus cargos.
 
 Mi decisión es avanzar por etapas y mantener revisión humana: eficiencia económica y volumen de operaciones no justifican perjudicar el perfil o el rendimiento neto del cliente.
+
+## Alcance económico de Fase I
+
+24 asesores × 150 clientes: 3,600 clientes evaluados diariamente, aproximadamente 108,000 evaluaciones en treinta días bajo una inferencia por evaluación. Los escenarios 100 mil, un millón y cinco millones representan referencia inicial, crecimiento regional (~9.26 veces) y techo hipotético (~46.30 veces). No demuestran capacidad cloud. [Cálculo y FIX fechado](evidencias/negocio_fase1.json) · [Cifras originales del autor](config/fase1.json). La infraestructura NLP es sólo un componente del presupuesto integral; esta actividad no valida el ROI de Fase I.

@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling
+from revision_sections import scaling, business
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -85,6 +85,8 @@ img(d,E/'costos.png','Figura 3. Infraestructura mensual estimada en USD. El esce
 tab(d,['Escenario','Infra USD','TCO USD','Ahorro infra'],[[s['name'],f"{s['infra_usd']:.2f}",f"{s['tco_usd']:.2f}",f"{s['infra_saving_percent']:.2f} %"] for s in c['scenarios']])
 p(d,'El costo usa 730 horas y tarifas on demand instance based de Cloud Run us central1: USD 0.000018 por vCPU segundo y 0.000002 por GiB segundo, consultadas el 8 de noviembre de 2026. Comparo una base simulada de dos instancias con dos CPU y cuatro GiB contra dos instancias de una CPU y un GiB. No son facturas de la entrega anterior.')
 p(d,'Mantengo un frontend de USD 49.93, provisiones académicas de USD 10 para observabilidad y 5 para almacenamiento. El TCO agrega ocho horas de trabajo a USD 40. Excluyo impuestos, egress, licencias, soporte y balanceador externo; no aplico free tier ni descuentos. Estos conceptos deben cotizarse antes de contratar. Con un millón de solicitudes, el costo unitario de infraestructura estable es USD 0.1701 por mil; ese denominador no acredita capacidad.')
+page(d,'Vinculación con el caso de negocio')
+business(d,h,p,tab,R)
 page(d,'Control de gasto y sostenibilidad')
 p(d,'Aplico FinOps como responsabilidad compartida entre ingeniería, finanzas y negocio. Etiquetaría proyecto, ambiente, versión y responsable; revisaría semanalmente costo por mil inferencias, utilización, gasto acumulado y pronóstico mensual. El responsable de finanzas valida presupuesto y el de plataforma explica variaciones.')
 tab(d,['Control propuesto','Acción y responsable'],[['USD 300 de infraestructura al mes','Aviso a 80 % y 100 %, con pronóstico. Finanzas revisa gasto; plataforma investiga réplicas y logs. No detener automáticamente un servicio crítico.'],['Seis réplicas sostenidas','USD 380.29 estimados: 28.39 % más que la base. Revisar sizing y demanda antes de ampliar.'],['Error budget agotado','Suspender liberaciones no urgentes; plataforma recupera servicio y documenta causa antes de volver a escalar.'],['Optimización periódica','Comparar costo y p95 con mismo tráfico. Usar compromisos sólo con demanda estable; spot únicamente para trabajos tolerantes a interrupción.'],['Sostenibilidad','Medir CPU segundos por mil inferencias y tiempo ocioso; apagar entornos de práctica. No convertir consumo a CO2 sin factor energético y región verificables.']])
@@ -123,10 +125,12 @@ p(a,'P significa procesos y C concurrencia del cliente. CPU 1.0 equivale a un n�
 p(a,'Throughput = solicitudes completadas / segundos transcurridos. p95 = percentil 95 de tiempos cliente HTTP por repetición. Reporto media de los tres p95 al resumir, no un p95 combinado. RSS es el máximo muestreado de la suma de procesos del servidor; puede duplicar memoria compartida.')
 img(a,E/'rendimiento.png','Figura 1. Comparación local. Tres repeticiones cortas no reemplazan prueba de estabilidad.',6)
 page(a,'Costeo reproducible y sensibilidad')
-p(a,'API USD = 3600 × horas instancia × (CPU × 0.000018 + GiB × 0.000002). Horas instancia = mínimas × 730 + extras × horas pico. Infraestructura = API + frontend + 10 + 5. TCO = infraestructura + 8 × 40. Moneda USD; no conversión a MXN.')
+p(a,'API USD = 3600 × horas instancia × (CPU × 0.000018 + GiB × 0.000002). Horas instancia = mínimas × 730 + extras × horas pico. Infraestructura = API + frontend + 10 + 5. TCO = infraestructura + 8 × 40. Esta tabla se expresa en USD; la conversión a MXN y su fuente se presentan en el apartado de Fase I.')
 tab(a,['Escenario','Horas API','API USD','Infra USD','TCO USD'],[[s['name'],s['api_instance_hours'],f"{s['api_usd']:.2f}",f"{s['infra_usd']:.2f}",f"{s['tco_usd']:.2f}"] for s in c['scenarios']])
 tab(a,['Escenario','100 mil req','1 millón req','5 millones req'],[[s['name']]+[f"{s['usd_per_1000_requests'][str(n)]:.4f}" for n in [100000,1000000,5000000]] for s in c['scenarios']])
 p(a,'La segunda tabla expresa USD por mil solicitudes, no costo total. Dividir por más solicitudes no demuestra que puedan atenderse con la misma configuración. No se han incluido gastos variables de salida de red, impuestos, licencias o soporte. El ahorro de 42.59 % se calcula sobre infraestructura, no sobre TCO ni sobre una factura real.')
+page(a,'Alcance y comparación con Fase I')
+business(a,h,p,tab,R)
 page(a,'Calidad y evaluación exploratoria de fairness')
 tab(a,['Grupo','n / positivos','TP / FN','FP / TN','TPR','FPR'],[[x['group'],f"{x['n']} / {x['positives']}",f"{x['tp']} / {x['fn']}",f"{x['fp']} / {x['tn']}",f"{x['recall']:.4f}",f"{x['fpr']:.4f}"] for x in f['groups']])
 tab(a,['Grupo','IC Wilson TPR 95 %','Selección','Precisión'],[[x['group'],f"{x['tpr_ci95'][0]:.4f} a {x['tpr_ci95'][1]:.4f}",f"{x['selection_rate']:.4f}",f"{x['precision']:.4f}"] for x in f['groups']])
