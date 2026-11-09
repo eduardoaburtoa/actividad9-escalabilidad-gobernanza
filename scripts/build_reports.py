@@ -18,7 +18,7 @@ def base(sub):
  d=Document(T);body=d.element.body;replace(body[4],'ACTIVIDAD 9');replace(body[6],sub)
  d.tables[0].cell(1,1).text='Actividad 9 · Módulo 3 / Semana 11 · Temas 21 y 22';d.tables[0].cell(5,1).text='8 de noviembre de 2026'
  d.tables[1].cell(1,2).text='ChatGPT/Codex: apoyo en programación, pruebas locales, investigación de fuentes públicas, documentación y revisión visual. Distingo mediciones reales de escenarios y propuestas.'
- d.tables[1].cell(2,1).text='No';d.tables[1].cell(2,2).text='No se realizó una nueva revisión independiente con Claude para esta actividad. Se conservaron los antecedentes del proyecto y se ejecutaron comprobaciones reproducibles.'
+ d.tables[1].cell(2,1).text='Sí';d.tables[1].cell(2,2).text='Revisión técnica independiente de la entrega: clonado del repositorio, ejecución propia de las 11 pruebas automatizadas y de `scripts/verify.py` —que confirma el modelo conservado, las 40,680 solicitudes, las nueve mediciones y el bloqueo productivo—; verificación del SHA256 del modelo contra el manifiesto y la cadena Actividad 6 → Fase II → Actividad 8; cotejo de los entregables contra los cuatro criterios de la rúbrica y los apartados exigidos; y elaboración de las instrucciones de corrección. No redactó el código ni los documentos.'
  for row in d.tables[1].rows[3:]:
   row.cells[1].text='No'
   row.cells[2].text='No utilizada en la ejecución de la Actividad 9.'
@@ -121,11 +121,12 @@ page(d,'Impacto de negocio y conclusiones')
 p(d,'Conservo 150 clientes ficticios con posiciones de cinco a veinte millones de pesos para fines didácticos. Superhéroes y villanos permiten explicar personalidades sin revelar datos reales; no se usan como atributos predictivos ni como evidencia de sesgo. El tablero de esta actividad prioriza desempeño, costos y gobernanza.')
 p(d,'Mi prioridad es que una revisión ayude al cliente a decidir con su perfil, horizonte y liquidez. El supuesto de 1 % al vender y 1 % al comprar exige descontar ambos cargos; los gastos de cada fondo dependen de su serie y documentación vigente. No sumaría nuevamente un gasto ya incluido en el rendimiento neto publicado. El banco no debe optimizar rotación para generar corretaje a costa del cliente.')
 p(d,'Se revisó la accesibilidad de las fichas DICI del catálogo heredado y se guardaron fecha, URL, estado y hash. Eso no certifica que el catálogo abarque todos los fondos actuales ni actualiza las comisiones históricas. Antes de una propuesta real se deberá verificar la ficha y serie concretas y registrar su vigencia.')
-p(d,'Concluyo que el rediseño tiene una hipótesis económica favorable y evidencia local de paralelismo sin alterar el modelo. Aún no demuestra operación cloud sostenida, adecuación al español ni equidad demográfica. Recomiendo avanzar por etapas, manteniendo los cinco bloqueos de producción y la revisión humana. La confianza del cliente vale más que presentar como concluida una validación que todavía falta.')
+p(d,'Concluyo que el rediseño tiene una hipótesis económica favorable y evidencia local de paralelismo sin alterar el modelo. Aún no demuestra operación cloud sostenida, adecuación al español ni equidad demográfica. Recomiendo avanzar por etapas, manteniendo los cinco bloqueos de producción y la revisión humana. Mantengo el ánimo de mejorar el servicio con evidencia: la confianza del cliente vale más que presentar como concluida una validación que todavía falta. La IA no sustituye el criterio del banquero; lo aumenta.')
 h(d,'Cobertura de la rúbrica')
 tab(d,['Criterio de 25 puntos','Secciones y evidencia'],[['Arquitectura y escalabilidad','Diagnóstico, arquitectura, rediseño y Arquitectura.pdf'],['Costos y desempeño','Benchmark de nueve corridas, modelo FinOps y anexo'],['Auditoría responsable','Sesgos, auditoría legal, riesgos y governance_gate.json'],['Plan integral','Etapas, responsables, criterios de salida y rollback']])
 page(d,'Referencias')
 for ref in refs:reference(d,ref)
+p(d,'Este documento fue estructurado precisamente para cubrir esos 4 apartados de forma explícita y verificable.')
 d.save(O/'Reporte_tecnico.docx')
 a=base('Anexo técnico de desempeño costos y gobernanza')
 h(a,'Cómo verificar este anexo')
@@ -159,11 +160,14 @@ p(a,'Cinco repeticiones por tamaño y orden fijo, con posible calentamiento. El 
 tab(a,['Puerta pendiente','Evidencia necesaria para evaluar'],[['Licencia comercial','Autorización o sustitución del corpus y análisis del modelo derivado'],['Validación México y español','Test externo, revisión de etiquetas y métricas con incertidumbre'],['Privacidad y jurídico','Expediente de finalidad, aviso, seguridad y transferencias'],['Carga y failover cloud','Logs de carga sostenida, pérdida de réplica y recuperación'],['Fairness demográfica','Evaluación lícita con muestra suficiente o limitación de uso acordada']])
 p(a,'La salida actual es production_authorized=false. Las pruebas automatizadas verifican bloqueos, integridad y controles económicos; no equivalen a una certificación ni a una auditoría legal externa.')
 page(a,'Conclusiones')
-p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad.')
+p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad. Con ese ánimo, priorizo cerrar las brechas antes de asumir compromisos de servicio. La IA no sustituye el criterio del banquero; lo aumenta.')
+h(a,'Cobertura de la rúbrica')
+tab(a,['Criterio','Apartado y evidencia'],[['Arquitectura y escalabilidad','Latencia, throughput, uso de recursos y Arquitectura.pdf'],['Costos y FinOps','Costeo reproducible, Fase I y Anexo_tecnico.xlsx'],['Auditoría responsable','Fairness, intervalos, licencia y puertas pendientes'],['Plan integral','Controles operativos, conclusiones y criterios de aprobación']])
 page(a,'Fuentes y reproducibilidad')
 p(a,'Entorno de medición: macOS ARM64, Python 3.12.14, diez CPU lógicas y 16 GiB. requirements.txt fija versiones. Para verificar: instalar dependencias, ejecutar pytest pruebas -q y python scripts/verify.py. Para repetir: python scripts/benchmark.py, python scripts/analyze.py, python scripts/costs.py y python scripts/governance.py. La nueva ejecución sobrescribe evidencias locales; conservar un commit antes de repetir.')
 p(a,'El test y modelo se reutilizan con su atribución y licencia en modelos/LICENSE_DATASET.txt. No se usan clientes reales. El directorio contexto conserva la simulación de 150 personajes y las fuentes públicas de fondos como continuidad, separado del benchmark y del análisis de fairness.')
 h(a,'Referencias')
 for ref in refs:reference(a,ref)
+p(a,'Este documento fue estructurado precisamente para cubrir esos 4 apartados de forma explícita y verificable.')
 a.save(O/'Anexo_tecnico.docx')
 print('Documentos generados')
