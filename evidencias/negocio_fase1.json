@@ -1,0 +1,40 @@
+{
+  "source_inputs": {
+    "source": "Cifras de Fase I proporcionadas expresamente por Eduardo Aburto en la solicitud de revisión del 8 noviembre 2026; no recalculadas",
+    "advisors": 24,
+    "clients_per_advisor": 150,
+    "clients": 3600,
+    "aum_millions_mxn": 54397,
+    "annual_reviews": 7200,
+    "pilot_advisors": 6,
+    "pilot_months": "1 a 9",
+    "pilot_investment_mxn": 9083448,
+    "annual_operation_mxn": 4769996,
+    "annual_expected_benefit_mxn": 40540443,
+    "roi_three_year_percent": 298.6,
+    "payback_month": 13,
+    "conservative_roi_percent": 38.8,
+    "conservative_payback_month": 25,
+    "client_retains_per_brokerage_peso": 1.04,
+    "rotation_threshold_text": "3.0 puntos porcentuales por encima del 2 % de costo",
+    "planning_days_month": 30,
+    "inferences_per_evaluation_assumption": 1,
+    "fx_mxn_per_usd": 18.6297,
+    "fx_date": "2026-11-06",
+    "fx_source": "https://www.banxico.org.mx/apps/dao-web/4/52/Fix48.html",
+    "fx_checked_date": "2026-11-08"
+  },
+  "monthly_evaluations": 108000,
+  "pilot_monthly_evaluations": 27000,
+  "infra_month_usd": 170.05200000000002,
+  "infra_month_mxn": 3168.0177444000005,
+  "infra_year_mxn": 38016.2129328,
+  "share_of_fase1_opex_percent": 0.796986264407769,
+  "infra_mxn_client_month": 0.8800049290000002,
+  "scenario_multiples": {
+    "100000": 0.9259259259259259,
+    "1000000": 9.25925925925926,
+    "5000000": 46.2962962962963
+  },
+  "scope": "Una inferencia por evaluación es supuesto de dimensionamiento. Infraestructura de NLP es sólo un componente del proyecto; no ahorro del presupuesto total ni validación del ROI."
+}
