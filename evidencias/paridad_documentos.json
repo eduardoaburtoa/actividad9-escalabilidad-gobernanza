@@ -1,0 +1,16 @@
+{
+  "report": {
+    "word_google_blocks_identical": true,
+    "blocks": 101,
+    "pdf_pages": 18,
+    "incognito_read_verified": true,
+    "anonymous_export_http_status": 200
+  },
+  "annex": {
+    "word_google_blocks_identical": true,
+    "blocks": 78,
+    "pdf_pages": 12,
+    "incognito_read_verified": true,
+    "anonymous_export_http_status": 200
+  }
+}

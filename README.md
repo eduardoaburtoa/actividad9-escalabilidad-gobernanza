@@ -10,8 +10,9 @@ Como banquero Sr., propongo escalar la preparación de revisiones de portafolio 
 
 | Entregable | Consulta | Editable |
 |---|---|---|
-| Reporte técnico · 14 páginas | [PDF](documentos/Reporte_tecnico.pdf) | [Word](documentos/Reporte_tecnico.docx) |
-| Anexo técnico · 8 páginas | [PDF](documentos/Anexo_tecnico.pdf) | [Word](documentos/Anexo_tecnico.docx) |
+| Reporte técnico · 18 páginas | [PDF](documentos/Reporte_tecnico.pdf) | [Word](documentos/Reporte_tecnico.docx) |
+| Anexo técnico · 12 páginas | [PDF](documentos/Anexo_tecnico.pdf) | [Word](documentos/Anexo_tecnico.docx) |
+| Costos con fórmulas vivas | [Excel](documentos/Anexo_tecnico.xlsx) | Cuatro hojas; supuestos ámbar editables |
 | Arquitectura actual y propuesta | [Imagen](documentos/Arquitectura.png) | [PDF](documentos/Arquitectura.pdf) |
 | Tablero interactivo | [Streamlit](app.py) | Instrucciones abajo |
 | Evidencia reproducible | [Resultados](evidencias) | [Scripts](scripts) |
@@ -32,14 +33,16 @@ Como banquero Sr., propongo escalar la preparación de revisiones de portafolio 
 
 **Lectura correcta:** dos procesos en un host no son escalado horizontal de nube. Las repeticiones duran 3.51–8.01 s; no prueban carga sostenida. El test contiene noticias en inglés; el modelo no predice rentabilidad, no valida español y no ejecuta inversiones. Fairness por longitud es exploratoria y no acredita equidad demográfica.
 
+La paginación siguiente corresponde a los PDF publicados; Google Docs puede distribuir las páginas de forma diferente conservando el mismo contenido.
+
 ## Cobertura de rúbrica
 
 | Criterio · 25 puntos cada uno | Reporte | Evidencia |
 |---|---|---|
-| Arquitectura y escalabilidad | pp. 4–7 | [Diagrama](documentos/Arquitectura.pdf), [benchmark](evidencias/benchmark.json) |
-| Costos y desempeño con FinOps | pp. 7–9 | [Costos](evidencias/costos.json), [supuestos](config/costs.json), anexo pp. 4–5 |
-| Auditoría ética, técnica y legal | pp. 10–11 | [Fairness](evidencias/fairness.json), licencia y controles |
-| Plan integrado responsable | pp. 12–13 | [Puertas de aprobación](config/governance.json), [estado](evidencias/governance_gate.json) |
+| Arquitectura y escalabilidad | pp. 4–8 | [Diagrama](documentos/Arquitectura.pdf), [benchmark](evidencias/benchmark.json) |
+| Costos y desempeño con FinOps | pp. 8–11 | [Costos](evidencias/costos.json), [supuestos](config/costs.json), anexo pp. 4–8 |
+| Auditoría ética, técnica y legal | pp. 12–15 | [Fairness](evidencias/fairness.json), licencia y controles |
+| Plan integrado responsable | pp. 16–17 | [Puertas de aprobación](config/governance.json), [estado](evidencias/governance_gate.json) |
 
 ![Arquitectura](documentos/Arquitectura.png)
 
@@ -53,6 +56,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 pytest pruebas -q
 python scripts/verify.py
+python scripts/validate_delivery.py
 streamlit run app.py
 ```
 
@@ -98,3 +102,7 @@ Mi decisión es avanzar por etapas y mantener revisión humana: eficiencia econ�
 24 asesores × 150 clientes: 3,600 clientes evaluados diariamente, aproximadamente 108,000 evaluaciones en treinta días bajo una inferencia por evaluación. Los escenarios 100 mil, un millón y cinco millones representan referencia inicial, crecimiento regional (~9.26 veces) y techo hipotético (~46.30 veces). No demuestran capacidad cloud. [Cálculo y FIX fechado](evidencias/negocio_fase1.json) · [Cifras originales del autor](config/fase1.json). La infraestructura NLP es sólo un componente del presupuesto integral; esta actividad no valida el ROI de Fase I.
 
 **La IA no sustituye el criterio del banquero; lo aumenta.**
+
+## Revisión final 1.1.0
+
+[Detalle de las siete ramas, pruebas y cambios](documentos/Revision_final.md) · [Conteo antes/después e integridad](evidencias/revision_editorial.json) · [Validación de fórmulas](evidencias/validacion_xlsx.json). Los Google Docs conservan sus enlaces y se comprobaron en incógnito con acceso de lector; sólo su propietario conserva edición.
