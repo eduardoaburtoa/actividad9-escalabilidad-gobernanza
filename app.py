@@ -39,7 +39,7 @@ with tabs[3]:
  st.write('NIST AI RMF e ISO 42001 se usan como referencias, sin afirmar certificación. La revisión humana es obligatoria; el modelo clasifica noticias en inglés, no ejecuta órdenes.')
 with tabs[4]:
  st.write('Reporte y anexo incluyen métodos, supuestos, riesgos, responsables y referencias.')
- for name in ['Reporte_tecnico.pdf','Reporte_tecnico.docx','Anexo_tecnico.pdf','Anexo_tecnico.docx','Arquitectura.pdf']:
+ for name in ['Reporte_tecnico.pdf','Reporte_tecnico.docx','Anexo_tecnico.pdf','Anexo_tecnico.docx','Anexo_tecnico.xlsx','Arquitectura.pdf']:
   path=R/'documentos'/name
   if path.exists():st.download_button(name,path.read_bytes(),file_name=name)
  st.caption('Los 150 personajes ficticios y las fichas históricas se conservan en contexto; no alimentan la evaluación de fairness.')
