@@ -43,7 +43,16 @@ def tab(d,heads,rows):
  d.add_paragraph()
 def img(d,path,caption,width=6):d.add_picture(str(path),width=Inches(width));p(d,caption)
 def reference(d,text):
- pa=d.add_paragraph(text)
+ pa=d.add_paragraph()
+ import re
+ m=re.search(r'\((?:\d{4}[^)]*|s\. f\.)\)\. ',text)
+ if m:
+  end=m.end();tail=text[end:];positions=[i for token in ['. https://','. Tarifas consultadas'] if (i:=tail.find(token))>=0]
+  cut=min(positions) if positions else len(tail)
+  if text.startswith('Malo,'):
+   title='Journal of the Association for Information Science and Technology, 65';before,after=text.split(title,1);pa.add_run(before);pa.add_run(title).italic=True;pa.add_run(after)
+  else:pa.add_run(text[:end]);pa.add_run(tail[:cut]).italic=True;pa.add_run(tail[cut:])
+ else:pa.add_run(text)
  pa.paragraph_format.left_indent=Inches(0.3)
  pa.paragraph_format.first_line_indent=Inches(-0.3)
  pa.paragraph_format.space_after=Pt(8)
@@ -64,6 +73,7 @@ refs=[
 'Malo, P., Sinha, A., Korhonen, P., Wallenius, J., & Takala, P. (2014). Good debt or bad debt: Detecting semantic orientations in economic texts. Journal of the Association for Information Science and Technology, 65(4), 782–796. https://doi.org/10.1002/asi.23062',
 'Universidad Tecmilenio. (2026). Temas 21 y 22 y rúbrica de la Actividad 9 [Material del curso].'
 ]
+refs=sorted(refs,key=str.casefold)
 d=base('Escalabilidad y gobernanza responsable del asistente de portafolios')
 h(d,'Decisión y alcance')
 p(d,'Propongo escalar el servicio de clasificación de noticias con réplicas pequeñas y conservar una aprobación humana antes de cualquier decisión de inversión. El análisis estima una reducción de 42.59 % en infraestructura frente a una base cloud simulada. La prueba HTTP local procesó 40,680 solicitudes sin errores y mantuvo las predicciones; estos resultados no acreditan disponibilidad mensual ni capacidad en nube.')
