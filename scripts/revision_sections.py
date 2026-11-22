@@ -88,3 +88,21 @@ def inference_optimization(d,h,p,tab,root):
  ['Caché por texto repetido','Evitar inferencias repetidas sobre noticias públicas','Medio: clave, TTL, invalidación y protección','No medida; falta hit rate real, costo de almacenamiento y riesgo de obsolescencia. No contabilizo ahorro.'],
  ['Lotes asíncronos','Aprovechar throughput offline para preparación programada','Medio: cola, reintentos e idempotencia','Batch local medido; orquestación asíncrona no implementada. Primera propuesta para prueba controlada.']])
  p(d,'Probaría primero lotes asíncronos para preparar revisiones programadas, sin retrasar la consulta interactiva. Mediría tiempo total desde entrada a cola hasta resultado, p95 de espera, memoria máxima, fallos, duplicados y costo por mil textos bajo cuotas cloud. El ensayo debe conservar el hash del modelo y las probabilidades. Las otras palancas fueron consideradas y pospuestas; no presento sus efectos esperados como beneficios observados.')
+
+
+def lineage(d,h,p,tab,root):
+ import json
+ m=json.loads((root/'modelos/manifest.json').read_text());source=json.loads((root/'evidencias/procedencia.json').read_text())
+ h(d,'Trazabilidad y linaje')
+ p(d,'Mis mecanismos de trazabilidad permiten reconstruir el origen del artefacto y la evaluación, no una decisión bancaria individual. La cadena documentada es Actividad 6 → Fase II → Actividad 8 → esta evaluación. Mantengo el hash y el umbral 0.20, sin reentrenamiento.')
+ tab(d,['Artefacto y origen','Identificador','Verificación y ubicación'],[
+ ['Modelo heredado de Actividad 6',m['source_commit'],'Commit en modelos/manifest.json; comprobar en el repositorio actividad6-evaluacion-portafolios.'],
+ ['Modelo SVM calibrada',m['sha256'],'backend/main.py calcula SHA256 al iniciar y aborta ante diferencia, antes de joblib.load; scripts/verify.py lo contrasta al auditar.'],
+ ['Servicio de Fase II',source['fase2_commit'],'Commit exacto en evidencias/procedencia.json; antecedente de la API.'],
+ ['Observabilidad de Actividad 8',source['actividad8_commit'],'Commit exacto en evidencias/procedencia.json; mantiene las 900 solicitudes y sus incidentes históricos.'],
+ ['Corrida MLflow de Actividad 8','c0a8fa3f79b84eb4bec63d70b674bf32','evidencias/mlflow_export.json del commit anterior: FINISHED, model_sha256 y source_commit. No es una corrida nueva de Actividad 9.'],
+ ['Predicciones auditadas','452 noticias; id, etiqueta, probability, prediction y group','evidencias/predicciones_auditadas.csv: scripts/verify.py contrasta métricas con los resultados históricos.'],
+ ['Material del curso','SHA256 de rúbrica y temas 21/22','evidencias/procedencia.json identifica entradas, sin redistribuir los PDF originales.']])
+ p(d,'En /v1/predict la respuesta devuelve model_sha256, umbral, probabilidad negativa, priorizar_revision e idioma declarado, además del aviso de revisión humana. Eso informa la versión utilizada, pero no persiste por sí solo una bitácora de consultas. La API actual no registra texto, identidad de persona ni credenciales. El CSV de auditoría es evidencia offline y no un registro productivo de decisiones.')
+ p(d,'La trazabilidad pendiente comprende quién consultó qué, autorización por usuario, motivo de aceptación o rechazo de la señal y retención auditada de decisiones. Antes de producción exigiré identidad autorizada, identificador de evento, versión, sello temporal, decisión humana y política de acceso/retención aprobada por privacidad. No guardaré texto patrimonial en logs generales. La clave de servicio compartida no identifica al banquero; el hash verifica integridad, no confianza del origen ni cumplimiento legal.')
+ p(d,'Referencia verificable de MLflow: https://github.com/eduardoaburtoa/actividad8-observabilidad-portafolios/blob/0477912e48c547a1fdf60b34d433d976a7e87648/evidencias/mlflow_export.json. Esta evidencia enlaza parámetros, métricas y artefactos de la corrida; no acredita retención inmutable ni auditoría de acceso.')

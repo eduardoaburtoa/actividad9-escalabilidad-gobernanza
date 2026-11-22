@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks, performance_report, inference_optimization
+from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks, performance_report, inference_optimization, lineage
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -121,6 +121,8 @@ p(d,'La diferencia máxima de recall es 13.57 puntos porcentuales. El intervalo 
 p(d,'No contamos con edad, sexo o etnia; no puedo acreditar fairness demográfica. Tampoco infiero esos atributos a partir de personajes ficticios. La siguiente evaluación requeriría finalidad legítima, minimización, revisión legal y muestras adecuadas; compararía TPR y FPR por grupos, prevalencias e incertidumbre. No impondría igualdad de selección sin analizar diferencias de base y daño.')
 page(d,'Fairness e incertidumbre')
 fairness_report(d,h,p,tab,R)
+page(d,'Mecanismos de trazabilidad')
+lineage(d,h,p,tab,R)
 page(d,'Auditoría ética legal y de seguridad')
 tab(d,['Riesgo y nivel','Evidencia y control requerido','Responsable'],[['Licencia comercial crítico','Corpus con CC BY NC SA 3.0. No aprobar uso comercial sin resolver derechos del dato y del modelo derivado.','Jurídico'],['Dominio y sesgo alto','Inglés e historia financiera; sin prueba externa mexicana ni atributos protegidos. Validación nueva y revisión de errores.','Riesgo de modelo'],['Privacidad alto','No hay clientes reales en el repositorio. Antes de producción: inventario, aviso, base de tratamiento, ARCO, seguridad y transferencias.','Privacidad'],['Conflicto de interés alto','1 % compra y 1 % venta son supuestos didácticos. Rentabilidad neta y perfil antes que volumen de operaciones.','Cumplimiento y negocio'],['Seguridad alto','Joblib sólo desde origen confiable; hash no elimina código malicioso. Secretos, OIDC, mínimos privilegios y análisis de dependencias.','Seguridad'],['Trazabilidad medio','Versión, umbral, fuente, acción humana y motivo. Logs sin texto sensible; acceso limitado y retención aprobada.','Plataforma']])
 p(d,'La LFPDPPP publicada en 2025 orienta el tratamiento de datos personales privados en México; el expediente debe incluir obligaciones aplicables y revisión profesional antes de usar información patrimonial. La referencia de conflictos de interés de CNBV y la normativa pública de fondos guían esa revisión, sin declarar aquí cumplimiento integral ni una tarifa bancaria real.')
@@ -173,6 +175,8 @@ tab(a,['Lote','Textos por segundo media','ms amortizados por texto'],[[i,f'{r.th
 p(a,'Cinco repeticiones por tamaño y orden fijo, con posible calentamiento. El cronómetro incluye vectorización e inferencia, sin HTTP ni espera de cola. Todos los tamaños conservaron las probabilidades. Usaría lotes para preparación offline; no inferiría que un usuario recibe una respuesta en el tiempo amortizado.')
 tab(a,['Puerta pendiente','Evidencia necesaria para evaluar'],[['Licencia comercial','Autorización o sustitución del corpus y análisis del modelo derivado'],['Validación México y español','Test externo, revisión de etiquetas y métricas con incertidumbre'],['Privacidad y jurídico','Expediente de finalidad, aviso, seguridad y transferencias'],['Carga y failover cloud','Logs de carga sostenida, pérdida de réplica y recuperación'],['Fairness demográfica','Evaluación lícita con muestra suficiente o limitación de uso acordada']])
 p(a,'La salida actual es production_authorized=false. Las pruebas automatizadas verifican bloqueos, integridad y controles económicos; no equivalen a una certificación ni a una auditoría legal externa.')
+page(a,'Mecanismos de trazabilidad')
+lineage(a,h,p,tab,R)
 page(a,'Conclusiones')
 p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad. Con ese ánimo, priorizo cerrar las brechas antes de asumir compromisos de servicio. La IA no sustituye el criterio del banquero; lo aumenta.')
 h(a,'Cobertura de la rúbrica')
