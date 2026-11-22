@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks, performance_report, inference_optimization, lineage
+from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks, performance_report, inference_optimization, lineage, responsible_ai
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -73,6 +73,12 @@ refs=[
 'Malo, P., Sinha, A., Korhonen, P., Wallenius, J., & Takala, P. (2014). Good debt or bad debt: Detecting semantic orientations in economic texts. Journal of the Association for Information Science and Technology, 65(4), 782–796. https://doi.org/10.1002/asi.23062',
 'Universidad Tecmilenio. (2026). Temas 21 y 22 y rúbrica de la Actividad 9 [Material del curso].'
 ]
+refs += [
+'Cámara de Diputados. (2025). Ley Federal de Protección de Datos Personales en Posesión de los Particulares (última reforma DOF 14-11-2025). https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf',
+'CNBV. (2022). Guía para la autorización de contratación de servicios con terceros para instituciones de crédito (versión 2.0). https://www.gob.mx/cnbv/es/documentos/guias-cnbv-para-la-autorizacion-de-instituciones-supervisadas',
+'CNBV. (s. f.). Disposiciones de carácter general aplicables a las instituciones de crédito, capítulo XI. https://www.cnbv.gob.mx/Normatividad/Disposiciones%20de%20car%C3%A1cter%20general%20aplicables%20a%20las%20instituciones%20de%20cr%C3%A9dito.pdf',
+'Google Cloud. (s. f.). Cloud Run locations. https://docs.cloud.google.com/run/docs/locations'
+]
 refs=sorted(refs,key=str.casefold)
 d=base('Escalabilidad y gobernanza responsable del asistente de portafolios')
 h(d,'Decisión y alcance')
@@ -129,6 +135,8 @@ p(d,'La LFPDPPP publicada en 2025 orienta el tratamiento de datos personales pri
 p(d,'Uso NIST AI RMF para organizar Govern, Map, Measure y Manage; ISO IEC 42001 como referencia de gestión, no como certificación obtenida. El AI Act europeo requiere analizar su ámbito territorial si se amplía a la Unión Europea; no afirmo que toda esta práctica mexicana quede automáticamente sujeta ni que sea un sistema de calificación crediticia.')
 page(d,'Marcos y controles aplicados')
 frameworks(d,h,p,tab,R)
+page(d,'Responsible AI y obligaciones antes de producción')
+responsible_ai(d,h,p,tab,R)
 page(d,'Plan de escalamiento responsable')
 tab(d,['Etapa y responsable','Evidencia y criterio de salida'],[['Semanas 1 y 2 · jurídico y privacidad','Resolver licencia comercial, finalidad y transferencias. Acta firmada y matriz normativa. Sin aprobación, conservar sólo laboratorio.'],['Semanas 2 a 4 · riesgo de modelo','Corpus externo en español y contexto mexicano; etiquetado independiente. Predefinir métricas y grupos antes de evaluar. Objetivos propuestos recall ≥0.80 y precisión ≥0.65; no garantizados.'],['Semanas 3 y 4 · plataforma','Prueba cloud ≥60 min a 10 rps, ráfagas, pérdida de réplica y restauración. p95 ≤250 ms, sin errores atribuibles al servicio en ensayo; seguimiento mensual posterior.'],['Semana 5 · comité de riesgo','Revisar TPR y FPR con IC por segmentos. Brecha >10 pp o IC demasiado amplio exige investigación, no aprobación automática. Plan de muestreo y límites documentados.'],['Semana 6 · negocio y operaciones','Piloto en sombra, sin órdenes: revisión humana de todas las señales. Canario 5 %, luego 25 % y 100 % sólo con aprobación y ventanas sanas.'],['Continuo · responsables asignados','Revisión semanal FinOps y mensual de calidad, sesgos y accesos; renovación de licencias y reevaluación ante cambio de modelo o datos.']])
 p(d,'Gobernar exige una decisión verificable: config/governance.json contiene cinco aprobaciones pendientes y scripts/governance.py produce production_authorized=false. Es un control académico que no sustituye firmas institucionales. Ningún cambio de una casilla del tablero concede autorización real.')
@@ -177,6 +185,8 @@ tab(a,['Puerta pendiente','Evidencia necesaria para evaluar'],[['Licencia comerc
 p(a,'La salida actual es production_authorized=false. Las pruebas automatizadas verifican bloqueos, integridad y controles económicos; no equivalen a una certificación ni a una auditoría legal externa.')
 page(a,'Mecanismos de trazabilidad')
 lineage(a,h,p,tab,R)
+page(a,'Responsible AI y condiciones normativas')
+responsible_ai(a,h,p,tab,R)
 page(a,'Conclusiones')
 p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad. Con ese ánimo, priorizo cerrar las brechas antes de asumir compromisos de servicio. La IA no sustituye el criterio del banquero; lo aumenta.')
 h(a,'Cobertura de la rúbrica')
