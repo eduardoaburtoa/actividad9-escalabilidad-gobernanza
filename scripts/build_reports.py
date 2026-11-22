@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling, business
+from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -18,7 +18,7 @@ def base(sub):
  d=Document(T);body=d.element.body;replace(body[4],'ACTIVIDAD 9');replace(body[6],sub)
  d.tables[0].cell(1,1).text='Actividad 9 · Módulo 3 / Semana 11 · Temas 21 y 22';d.tables[0].cell(5,1).text='8 de noviembre de 2026'
  d.tables[1].cell(1,2).text='ChatGPT/Codex: apoyo en programación, pruebas locales, investigación de fuentes públicas, documentación y revisión visual. Distingo mediciones reales de escenarios y propuestas.'
- d.tables[1].cell(2,1).text='No';d.tables[1].cell(2,2).text='No se realizó una nueva revisión independiente con Claude para esta actividad. Se conservaron los antecedentes del proyecto y se ejecutaron comprobaciones reproducibles.'
+ d.tables[1].cell(2,1).text='Sí';d.tables[1].cell(2,2).text='Revisión técnica independiente de la entrega: clonado del repositorio, ejecución propia de las 11 pruebas automatizadas y de `scripts/verify.py` —que confirma el modelo conservado, las 40,680 solicitudes, las nueve mediciones y el bloqueo productivo—; verificación del SHA256 del modelo contra el manifiesto y la cadena Actividad 6 → Fase II → Actividad 8; cotejo de los entregables contra los cuatro criterios de la rúbrica y los apartados exigidos; y elaboración de las instrucciones de corrección. No redactó el código ni los documentos.'
  for row in d.tables[1].rows[3:]:
   row.cells[1].text='No'
   row.cells[2].text='No utilizada en la ejecución de la Actividad 9.'
@@ -42,7 +42,25 @@ def tab(d,heads,rows):
     for run in pa.runs:run.font.size=Pt(9);run.font.color.rgb=RGBColor.from_string('FFFFFF' if i==0 else '072146')
  d.add_paragraph()
 def img(d,path,caption,width=6):d.add_picture(str(path),width=Inches(width));p(d,caption)
+def reference(d,text):
+ pa=d.add_paragraph()
+ import re
+ m=re.search(r'\((?:\d{4}[^)]*|s\. f\.)\)\. ',text)
+ if m:
+  end=m.end();tail=text[end:];positions=[i for token in ['. https://','. Tarifas consultadas'] if (i:=tail.find(token))>=0]
+  cut=min(positions) if positions else len(tail)
+  if text.startswith('Malo,'):
+   title='Journal of the Association for Information Science and Technology, 65';before,after=text.split(title,1);pa.add_run(before);pa.add_run(title).italic=True;pa.add_run(after)
+  else:pa.add_run(text[:end]);pa.add_run(tail[:cut]).italic=True;pa.add_run(tail[cut:])
+ else:pa.add_run(text)
+ pa.paragraph_format.left_indent=Inches(0.3)
+ pa.paragraph_format.first_line_indent=Inches(-0.3)
+ pa.paragraph_format.space_after=Pt(8)
+ return pa
 refs=[
+'Beyer, B., Murphy, N. R., Rensin, D. K., Kawahara, K., & Thorne, S. (Eds.). (2018). The site reliability workbook: Practical ways to implement SRE. O’Reilly Media. https://sre.google/workbook/implementing-slos/',
+'Banco de México. (2026, 6 de noviembre). Tipo de cambio FIX [Serie diaria]. https://www.banxico.org.mx/apps/dao-web/4/52/Fix48.html',
+
 'Google Cloud. (s. f.). Cloud Run pricing. Tarifas consultadas el 8 de noviembre de 2026. https://cloud.google.com/run/pricing',
 'Google Cloud. (s. f.). About instance autoscaling. https://docs.cloud.google.com/run/docs/about-instance-autoscaling',
 'FinOps Foundation. (s. f.). FinOps Framework. https://www.finops.org/framework/',
@@ -55,11 +73,12 @@ refs=[
 'Malo, P., Sinha, A., Korhonen, P., Wallenius, J., & Takala, P. (2014). Good debt or bad debt: Detecting semantic orientations in economic texts. Journal of the Association for Information Science and Technology, 65(4), 782–796. https://doi.org/10.1002/asi.23062',
 'Universidad Tecmilenio. (2026). Temas 21 y 22 y rúbrica de la Actividad 9 [Material del curso].'
 ]
+refs=sorted(refs,key=str.casefold)
 d=base('Escalabilidad y gobernanza responsable del asistente de portafolios')
 h(d,'Decisión y alcance')
 p(d,'Propongo escalar el servicio de clasificación de noticias con réplicas pequeñas y conservar una aprobación humana antes de cualquier decisión de inversión. El análisis estima una reducción de 42.59 % en infraestructura frente a una base cloud simulada. La prueba HTTP local procesó 40,680 solicitudes sin errores y mantuvo las predicciones; estos resultados no acreditan disponibilidad mensual ni capacidad en nube.')
 p(d,'Desde mi enfoque de banquero Sr., la eficiencia sólo tiene valor si mejora la preparación de la revisión y protege al cliente. Por ello, mi decisión es continuar en un entorno académico. El uso productivo permanece bloqueado hasta resolver licenciamiento, validación en español y México, privacidad, pruebas cloud y evidencia de fairness demográfica.')
-p(d,'Doy continuidad a la SVM calibrada de Actividades 5 y 6, a la API de Fase II y a los aprendizajes operativos de Actividad 8. No vuelvo a entrenar ni a seleccionar el modelo con el test. La clase positiva identifica noticia negativa en inglés; no predice rendimientos ni recomienda comprar o vender fondos.')
+p(d,'Mi cadena empieza en Fase I: business case, ROI esperado y alcance de 3,600 clientes. Sigue por Actividad 4, Actividad 5, Actividad 6, Fase II, Actividad 8 y Actividad 9. No consta una Actividad 7 publicada en esta cadena; no invento el motivo ni renombro Fase II. Doy continuidad a la SVM calibrada de Actividades 5 y 6, a la API de Fase II y a los aprendizajes operativos de Actividad 8. No vuelvo a entrenar ni a seleccionar el modelo con el test. La clase positiva identifica noticia negativa en inglés; no predice rendimientos ni recomienda comprar o vender fondos.')
 tab(d,['Entregable','Contenido verificable'],[['Reporte técnico','Arquitectura, rediseño, FinOps, auditoría y plan de aprobación'],['Anexo técnico','Nueve corridas HTTP, costos, calidad y brechas por longitud'],['Arquitectura PNG y PDF','Estado local actual y nube propuesta claramente separados'],['Repositorio y Streamlit','Scripts, configuraciones, datos de evidencia y exploración de resultados']])
 page(d,'Arquitectura actual y diagnóstico')
 p(d,'El sistema integra Streamlit, FastAPI y un pipeline TF IDF con SVM calibrada. La API verifica la integridad del archivo de modelo y exige una clave de servicio; expone salud, descripción del modelo e inferencia. Fase II comprobó integración y contenedorización local. No atribuyo a ese antecedente un despliegue cloud público que no consta en la evidencia.')
@@ -96,10 +115,14 @@ p(d,'Recalculé el test histórico de 452 noticias, con 61 negativas. Conservo u
 img(d,E/'fairness.png','Figura 4. Recall por longitud e intervalos Wilson al 95 %. Longitud es una condición técnica, no un atributo protegido.',5.8)
 p(d,'La diferencia máxima de recall es 13.57 puntos porcentuales. El intervalo bootstrap descriptivo de la brecha es 3.57 a 42.89 puntos, con 2,000 repeticiones y semilla 42. La amplitud y los pocos positivos por grupo impiden una conclusión firme. El máximo de brechas es no negativo por construcción: este intervalo no es una prueba confirmatoria de discriminación.')
 p(d,'No contamos con edad, sexo o etnia; no puedo acreditar fairness demográfica. Tampoco infiero esos atributos a partir de personajes ficticios. La siguiente evaluación requeriría finalidad legítima, minimización, revisión legal y muestras adecuadas; compararía TPR y FPR por grupos, prevalencias e incertidumbre. No impondría igualdad de selección sin analizar diferencias de base y daño.')
+page(d,'Fairness e incertidumbre')
+fairness_report(d,h,p,tab,R)
 page(d,'Auditoría ética legal y de seguridad')
 tab(d,['Riesgo y nivel','Evidencia y control requerido','Responsable'],[['Licencia comercial crítico','Corpus con CC BY NC SA 3.0. No aprobar uso comercial sin resolver derechos del dato y del modelo derivado.','Jurídico'],['Dominio y sesgo alto','Inglés e historia financiera; sin prueba externa mexicana ni atributos protegidos. Validación nueva y revisión de errores.','Riesgo de modelo'],['Privacidad alto','No hay clientes reales en el repositorio. Antes de producción: inventario, aviso, base de tratamiento, ARCO, seguridad y transferencias.','Privacidad'],['Conflicto de interés alto','1 % compra y 1 % venta son supuestos didácticos. Rentabilidad neta y perfil antes que volumen de operaciones.','Cumplimiento y negocio'],['Seguridad alto','Joblib sólo desde origen confiable; hash no elimina código malicioso. Secretos, OIDC, mínimos privilegios y análisis de dependencias.','Seguridad'],['Trazabilidad medio','Versión, umbral, fuente, acción humana y motivo. Logs sin texto sensible; acceso limitado y retención aprobada.','Plataforma']])
 p(d,'La LFPDPPP publicada en 2025 orienta el tratamiento de datos personales privados en México; el expediente debe incluir obligaciones aplicables y revisión profesional antes de usar información patrimonial. La referencia de conflictos de interés de CNBV y la normativa pública de fondos guían esa revisión, sin declarar aquí cumplimiento integral ni una tarifa bancaria real.')
 p(d,'Uso NIST AI RMF para organizar Govern, Map, Measure y Manage; ISO IEC 42001 como referencia de gestión, no como certificación obtenida. El AI Act europeo requiere analizar su ámbito territorial si se amplía a la Unión Europea; no afirmo que toda esta práctica mexicana quede automáticamente sujeta ni que sea un sistema de calificación crediticia.')
+page(d,'Marcos y controles aplicados')
+frameworks(d,h,p,tab,R)
 page(d,'Plan de escalamiento responsable')
 tab(d,['Etapa y responsable','Evidencia y criterio de salida'],[['Semanas 1 y 2 · jurídico y privacidad','Resolver licencia comercial, finalidad y transferencias. Acta firmada y matriz normativa. Sin aprobación, conservar sólo laboratorio.'],['Semanas 2 a 4 · riesgo de modelo','Corpus externo en español y contexto mexicano; etiquetado independiente. Predefinir métricas y grupos antes de evaluar. Objetivos propuestos recall ≥0.80 y precisión ≥0.65; no garantizados.'],['Semanas 3 y 4 · plataforma','Prueba cloud ≥60 min a 10 rps, ráfagas, pérdida de réplica y restauración. p95 ≤250 ms, sin errores atribuibles al servicio en ensayo; seguimiento mensual posterior.'],['Semana 5 · comité de riesgo','Revisar TPR y FPR con IC por segmentos. Brecha >10 pp o IC demasiado amplio exige investigación, no aprobación automática. Plan de muestreo y límites documentados.'],['Semana 6 · negocio y operaciones','Piloto en sombra, sin órdenes: revisión humana de todas las señales. Canario 5 %, luego 25 % y 100 % sólo con aprobación y ventanas sanas.'],['Continuo · responsables asignados','Revisión semanal FinOps y mensual de calidad, sesgos y accesos; renovación de licencias y reevaluación ante cambio de modelo o datos.']])
 p(d,'Gobernar exige una decisión verificable: config/governance.json contiene cinco aprobaciones pendientes y scripts/governance.py produce production_authorized=false. Es un control académico que no sustituye firmas institucionales. Ningún cambio de una casilla del tablero concede autorización real.')
@@ -108,11 +131,12 @@ page(d,'Impacto de negocio y conclusiones')
 p(d,'Conservo 150 clientes ficticios con posiciones de cinco a veinte millones de pesos para fines didácticos. Superhéroes y villanos permiten explicar personalidades sin revelar datos reales; no se usan como atributos predictivos ni como evidencia de sesgo. El tablero de esta actividad prioriza desempeño, costos y gobernanza.')
 p(d,'Mi prioridad es que una revisión ayude al cliente a decidir con su perfil, horizonte y liquidez. El supuesto de 1 % al vender y 1 % al comprar exige descontar ambos cargos; los gastos de cada fondo dependen de su serie y documentación vigente. No sumaría nuevamente un gasto ya incluido en el rendimiento neto publicado. El banco no debe optimizar rotación para generar corretaje a costa del cliente.')
 p(d,'Se revisó la accesibilidad de las fichas DICI del catálogo heredado y se guardaron fecha, URL, estado y hash. Eso no certifica que el catálogo abarque todos los fondos actuales ni actualiza las comisiones históricas. Antes de una propuesta real se deberá verificar la ficha y serie concretas y registrar su vigencia.')
-p(d,'Concluyo que el rediseño tiene una hipótesis económica favorable y evidencia local de paralelismo sin alterar el modelo. Aún no demuestra operación cloud sostenida, adecuación al español ni equidad demográfica. Recomiendo avanzar por etapas, manteniendo los cinco bloqueos de producción y la revisión humana. La confianza del cliente vale más que presentar como concluida una validación que todavía falta.')
+p(d,'Concluyo que el rediseño tiene una hipótesis económica favorable y evidencia local de paralelismo sin alterar el modelo. Aún no demuestra operación cloud sostenida, adecuación al español ni equidad demográfica. Recomiendo avanzar por etapas, manteniendo los cinco bloqueos de producción y la revisión humana. Mantengo el ánimo de mejorar el servicio con evidencia: la confianza del cliente vale más que presentar como concluida una validación que todavía falta. La IA no sustituye el criterio del banquero; lo aumenta.')
 h(d,'Cobertura de la rúbrica')
 tab(d,['Criterio de 25 puntos','Secciones y evidencia'],[['Arquitectura y escalabilidad','Diagnóstico, arquitectura, rediseño y Arquitectura.pdf'],['Costos y desempeño','Benchmark de nueve corridas, modelo FinOps y anexo'],['Auditoría responsable','Sesgos, auditoría legal, riesgos y governance_gate.json'],['Plan integral','Etapas, responsables, criterios de salida y rollback']])
 page(d,'Referencias')
-for ref in refs:p(d,ref)
+for ref in refs:reference(d,ref)
+p(d,'Este documento fue estructurado precisamente para cubrir esos 4 apartados de forma explícita y verificable.')
 d.save(O/'Reporte_tecnico.docx')
 a=base('Anexo técnico de desempeño costos y gobernanza')
 h(a,'Cómo verificar este anexo')
@@ -124,6 +148,8 @@ tab(a,['P / C / rep','rps','p95 ms','RSS MiB','CPU núcleos'],[[f"{r['workers']}
 p(a,'P significa procesos y C concurrencia del cliente. CPU 1.0 equivale a un núcleo ocupado. Cada fila contiene 4,520 solicitudes exitosas; el máximo cambio de probabilidad es 1.11 × 10⁻¹⁶, atribuible a precisión numérica. No se midió escalado horizontal entre servidores.')
 p(a,'Throughput = solicitudes completadas / segundos transcurridos. p95 = percentil 95 de tiempos cliente HTTP por repetición. Reporto media de los tres p95 al resumir, no un p95 combinado. RSS es el máximo muestreado de la suma de procesos del servidor; puede duplicar memoria compartida.')
 img(a,E/'rendimiento.png','Figura 1. Comparación local. Tres repeticiones cortas no reemplazan prueba de estabilidad.',6)
+page(a,'Métricas de desempeño por dimensión')
+performance_blocks(a,h,p,tab,R)
 page(a,'Costeo reproducible y sensibilidad')
 p(a,'API USD = 3600 × horas instancia × (CPU × 0.000018 + GiB × 0.000002). Horas instancia = mínimas × 730 + extras × horas pico. Infraestructura = API + frontend + 10 + 5. TCO = infraestructura + 8 × 40. Esta tabla se expresa en USD; la conversión a MXN y su fuente se presentan en el apartado de Fase I.')
 tab(a,['Escenario','Horas API','API USD','Infra USD','TCO USD'],[[s['name'],s['api_instance_hours'],f"{s['api_usd']:.2f}",f"{s['infra_usd']:.2f}",f"{s['tco_usd']:.2f}"] for s in c['scenarios']])
@@ -143,9 +169,15 @@ tab(a,['Lote','Textos por segundo media','ms amortizados por texto'],[[i,f'{r.th
 p(a,'Cinco repeticiones por tamaño y orden fijo, con posible calentamiento. El cronómetro incluye vectorización e inferencia, sin HTTP ni espera de cola. Todos los tamaños conservaron las probabilidades. Usaría lotes para preparación offline; no inferiría que un usuario recibe una respuesta en el tiempo amortizado.')
 tab(a,['Puerta pendiente','Evidencia necesaria para evaluar'],[['Licencia comercial','Autorización o sustitución del corpus y análisis del modelo derivado'],['Validación México y español','Test externo, revisión de etiquetas y métricas con incertidumbre'],['Privacidad y jurídico','Expediente de finalidad, aviso, seguridad y transferencias'],['Carga y failover cloud','Logs de carga sostenida, pérdida de réplica y recuperación'],['Fairness demográfica','Evaluación lícita con muestra suficiente o limitación de uso acordada']])
 p(a,'La salida actual es production_authorized=false. Las pruebas automatizadas verifican bloqueos, integridad y controles económicos; no equivalen a una certificación ni a una auditoría legal externa.')
+page(a,'Conclusiones')
+p(a,'El anexo permite contrastar latencia, throughput y uso de recursos observados con escenarios económicos y límites de fairness. Conservo las nueve corridas y el bloqueo productivo. Mi decisión es probar el dimensionamiento en nube antes de ampliar el piloto; las tablas de costos no sustituyen una factura ni una prueba de capacidad. Con ese ánimo, priorizo cerrar las brechas antes de asumir compromisos de servicio. La IA no sustituye el criterio del banquero; lo aumenta.')
+h(a,'Cobertura de la rúbrica')
+tab(a,['Criterio','Apartado y evidencia'],[['Arquitectura y escalabilidad','Latencia, throughput, uso de recursos y Arquitectura.pdf'],['Costos y FinOps','Costeo reproducible, Fase I y Anexo_tecnico.xlsx'],['Auditoría responsable','Fairness, intervalos, licencia y puertas pendientes'],['Plan integral','Controles operativos, conclusiones y criterios de aprobación']])
 page(a,'Fuentes y reproducibilidad')
 p(a,'Entorno de medición: macOS ARM64, Python 3.12.14, diez CPU lógicas y 16 GiB. requirements.txt fija versiones. Para verificar: instalar dependencias, ejecutar pytest pruebas -q y python scripts/verify.py. Para repetir: python scripts/benchmark.py, python scripts/analyze.py, python scripts/costs.py y python scripts/governance.py. La nueva ejecución sobrescribe evidencias locales; conservar un commit antes de repetir.')
 p(a,'El test y modelo se reutilizan con su atribución y licencia en modelos/LICENSE_DATASET.txt. No se usan clientes reales. El directorio contexto conserva la simulación de 150 personajes y las fuentes públicas de fondos como continuidad, separado del benchmark y del análisis de fairness.')
-for ref in refs[:6]+[refs[9],refs[10]]:p(a,ref)
+h(a,'Referencias')
+for ref in refs:reference(a,ref)
+p(a,'Este documento fue estructurado precisamente para cubrir esos 4 apartados de forma explícita y verificable.')
 a.save(O/'Anexo_tecnico.docx')
 print('Documentos generados')

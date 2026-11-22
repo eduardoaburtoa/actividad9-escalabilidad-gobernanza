@@ -1,0 +1,16 @@
+{
+  "four_sheets": [
+    "Supuestos",
+    "Escenarios",
+    "Costo por volumen",
+    "Comparación"
+  ],
+  "formula_sensitivity_cpu_rate": {
+    "before": 170.05200000000002,
+    "after": 311.964,
+    "restored": 170.05200000000002
+  },
+  "scenario_parity": true,
+  "formula_errors": 0,
+  "scope": "Validación del libro; no nueva medición del servicio"
+}
