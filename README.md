@@ -6,15 +6,18 @@
 
 Como banquero Sr., propongo escalar la preparación de revisiones de portafolio con costos transparentes, evidencia técnica y revisión humana. Esta entrega analiza el servicio heredado y propone su evolución; **la nube es un escenario simulado y la producción sigue bloqueada**.
 
-## Empieza aquí
+## Guía de entregables y resultados
 
-| Entregable | Consulta | Editable |
-|---|---|---|
-| Reporte técnico · 14 páginas | [PDF](documentos/Reporte_tecnico.pdf) | [Word](documentos/Reporte_tecnico.docx) |
-| Anexo técnico · 8 páginas | [PDF](documentos/Anexo_tecnico.pdf) | [Word](documentos/Anexo_tecnico.docx) |
-| Arquitectura actual y propuesta | [Imagen](documentos/Arquitectura.png) | [PDF](documentos/Arquitectura.pdf) |
-| Tablero interactivo | [Streamlit](app.py) | Instrucciones abajo |
-| Evidencia reproducible | [Resultados](evidencias) | [Scripts](scripts) |
+**Revisión de presentación: 21 de noviembre de 2026.**
+
+| Entregable | Lectura directa |
+|---|---|
+| Reporte técnico | [Escalabilidad, FinOps y gobernanza](documentos/01-reporte-tecnico/README.md) |
+| Anexo técnico | [Costos, desempeño y fairness](documentos/02-anexo-tecnico/README.md) |
+| Arquitectura | [Sistema actual y propuesto](documentos/03-arquitectura/README.md) |
+| Tablero interactivo | [Streamlit](app.py), instrucciones de ejecución abajo |
+| Evidencia reproducible | [Resultados](evidencias/README.md) · [Scripts](scripts/README.md) |
+| Descargas y archivos editables | [Índice documental, PDF, Word y Excel](documentos/README.md) |
 
 **Google Docs:** [Reporte editable](https://docs.google.com/document/d/1cMp3WDCrJkl1x_W6ingDuwyoSVslExBId_ULa-wSJVs/edit) · [Anexo editable](https://docs.google.com/document/d/12Pbozhz5y7g3ldfxwKvP_1mU0_0ilrX4OxzmVmfxns4/edit)
 
@@ -32,14 +35,16 @@ Como banquero Sr., propongo escalar la preparación de revisiones de portafolio 
 
 **Lectura correcta:** dos procesos en un host no son escalado horizontal de nube. Las repeticiones duran 3.51–8.01 s; no prueban carga sostenida. El test contiene noticias en inglés; el modelo no predice rentabilidad, no valida español y no ejecuta inversiones. Fairness por longitud es exploratoria y no acredita equidad demográfica.
 
+La paginación siguiente corresponde a los PDF publicados; Google Docs puede distribuir las páginas de forma diferente conservando el mismo contenido.
+
 ## Cobertura de rúbrica
 
 | Criterio · 25 puntos cada uno | Reporte | Evidencia |
 |---|---|---|
-| Arquitectura y escalabilidad | pp. 4–7 | [Diagrama](documentos/Arquitectura.pdf), [benchmark](evidencias/benchmark.json) |
-| Costos y desempeño con FinOps | pp. 7–9 | [Costos](evidencias/costos.json), [supuestos](config/costs.json), anexo pp. 4–5 |
-| Auditoría ética, técnica y legal | pp. 10–11 | [Fairness](evidencias/fairness.json), licencia y controles |
-| Plan integrado responsable | pp. 12–13 | [Puertas de aprobación](config/governance.json), [estado](evidencias/governance_gate.json) |
+| Arquitectura y escalabilidad | pp. 4–8 | [Diagrama](documentos/Arquitectura.pdf), [benchmark](evidencias/benchmark.json) |
+| Costos y desempeño con FinOps | pp. 8–11 | [Costos](evidencias/costos.json), [supuestos](config/costs.json), anexo pp. 4–8 |
+| Auditoría ética, técnica y legal | pp. 12–15 | [Fairness](evidencias/fairness.json), licencia y controles |
+| Plan integrado responsable | pp. 16–17 | [Puertas de aprobación](config/governance.json), [estado](evidencias/governance_gate.json) |
 
 ![Arquitectura](documentos/Arquitectura.png)
 
@@ -53,6 +58,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 pytest pruebas -q
 python scripts/verify.py
+python scripts/validate_delivery.py
 streamlit run app.py
 ```
 
@@ -83,10 +89,27 @@ La reconstrucción editorial usa `scripts/build_reports.py`, la plantilla reteni
 
 ## Continuidad del proyecto
 
-[Actividad 4](https://github.com/eduardoaburtoa/motor-senales-nlp) → [Actividad 5](https://github.com/eduardoaburtoa/actividad5-mlflow-portafolios) → [Actividad 6](https://github.com/eduardoaburtoa/actividad6-evaluacion-portafolios) → [Fase II](https://github.com/eduardoaburtoa/fase2-despliegue-portafolios) → [Actividad 8](https://github.com/eduardoaburtoa/actividad8-observabilidad-portafolios) → **Actividad 9**.
+[Fase I · business case](documentos/FaseI_contexto.md) → [Actividad 4](https://github.com/eduardoaburtoa/motor-senales-nlp) → [Actividad 5](https://github.com/eduardoaburtoa/actividad5-mlflow-portafolios) → [Actividad 6](https://github.com/eduardoaburtoa/actividad6-evaluacion-portafolios) → [Fase II](https://github.com/eduardoaburtoa/fase2-despliegue-portafolios) → [Actividad 8](https://github.com/eduardoaburtoa/actividad8-observabilidad-portafolios) → **Actividad 9**.
+
+La Fase I definió el business case, el ROI esperado y el alcance de 3,600 clientes. No hay una Actividad 7 publicada en la cadena consultada; no atribuyo una razón que no está documentada. Fase II se conserva con su nombre de entrega y no se renombra como Actividad 7.
 
 Conservo la SVM calibrada y umbral 0.20; no reentreno ni ajusto con el test. La evidencia de incidentes de Actividad 8 permanece histórica: recuperación no significa haber cumplido su presupuesto de latencia.
 
 Los [150 clientes ficticios](contexto/clientes_simulados.csv), de MXN 5–20 millones, mantienen la continuidad didáctica sin datos reales. No forman parte del entrenamiento ni de la auditoría de fairness. El 1 % de compra y 1 % de venta son supuestos académicos, no tarifas BBVA verificadas. Las fichas y comisiones heredadas requieren verificar serie y vigencia antes de cualquier uso real; [consulta de accesibilidad](evidencias/fuentes_fondos.json) no acredita exhaustividad del catálogo ni actualiza sus cargos.
 
 Mi decisión es avanzar por etapas y mantener revisión humana: eficiencia económica y volumen de operaciones no justifican perjudicar el perfil o el rendimiento neto del cliente.
+
+## Alcance económico de Fase I
+
+24 asesores × 150 clientes: 3,600 clientes evaluados diariamente, aproximadamente 108,000 evaluaciones en treinta días bajo una inferencia por evaluación. Los escenarios 100 mil, un millón y cinco millones representan referencia inicial, crecimiento regional (~9.26 veces) y techo hipotético (~46.30 veces). No demuestran capacidad cloud. [Cálculo y FIX fechado](evidencias/negocio_fase1.json) · [Cifras originales del autor](config/fase1.json). La infraestructura NLP es sólo un componente del presupuesto integral; esta actividad no valida el ROI de Fase I.
+
+**La IA no sustituye el criterio del banquero; lo aumenta.**
+
+## Revisión final 1.1.0
+
+[Detalle de las siete ramas, pruebas y cambios](documentos/Revision_final.md) · [Conteo antes/después e integridad](evidencias/revision_editorial.json) · [Validación de fórmulas](evidencias/validacion_xlsx.json). Los Google Docs conservan sus enlaces y se comprobaron en incógnito con acceso de lector; sólo su propietario conserva edición.
+
+
+## Revisión e integridad del repositorio
+
+Cada carpeta incluye una guía de uso. El [inventario de revisión](evidencias/revision_2026_11_21.json) identifica los archivos originales mediante SHA-256. Revisar un archivo hoy no cambia la fecha de su experimento: modelos, datos, mediciones y tarifas conservan su procedencia.

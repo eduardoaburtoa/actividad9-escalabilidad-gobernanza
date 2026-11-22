@@ -1,0 +1,73 @@
+{
+  "baseline_commit": "f770a14ac8afe3bb4bdac8f49e285c64950ea574",
+  "documents": {
+    "Reporte_tecnico": {
+      "before": {
+        "escalabilidad_vertical": 0,
+        "escalabilidad_horizontal": 0,
+        "fairness": 2,
+        "fase_i": 0,
+        "animo": 0
+      },
+      "after": {
+        "escalabilidad_vertical": 2,
+        "escalabilidad_horizontal": 2,
+        "fairness": 6,
+        "fase_i": 6,
+        "animo": 1
+      }
+    },
+    "Anexo_tecnico": {
+      "before": {
+        "escalabilidad_vertical": 0,
+        "escalabilidad_horizontal": 0,
+        "fairness": 4,
+        "fase_i": 0,
+        "animo": 0
+      },
+      "after": {
+        "escalabilidad_vertical": 0,
+        "escalabilidad_horizontal": 0,
+        "fairness": 6,
+        "fase_i": 8,
+        "animo": 1
+      }
+    }
+  },
+  "scope": "Conteo literal del cuerpo DOCX, incluyendo tablas y declaración de IA; Fase I excluye Fase II. No mide calidad por frecuencia.",
+  "annex_named_requirements": {
+    "before": {
+      "costos": true,
+      "latencia": false,
+      "throughput": false,
+      "uso_de_recursos": false,
+      "fairness": true
+    },
+    "after": {
+      "costos": true,
+      "latencia": true,
+      "throughput": true,
+      "uso_de_recursos": true,
+      "fairness": true
+    }
+  },
+  "xlsx": {
+    "sheets": [
+      "Supuestos",
+      "Escenarios",
+      "Costo por volumen",
+      "Comparación"
+    ],
+    "formula_count": 78,
+    "cached_errors": 0
+  },
+  "protected_files_unchanged": [
+    "modelos/modelo_SVM_calibrada.joblib",
+    "evidencias/benchmark.json",
+    "evidencias/benchmark_requests.csv",
+    "evidencias/fairness.json",
+    "scripts/verify.py",
+    "pruebas/test_app.py",
+    "pruebas/test_controls.py"
+  ]
+}
