@@ -1,0 +1,280 @@
+{
+  "review_date": "2026-11-21",
+  "scope": "Revisión de organización y trazabilidad; no nueva validación de tarifas ni nueva corrida. Hash del archivo en la revisión.",
+  "files": [
+    {
+      "path": ".github/workflows/validacion.yml",
+      "sha256": "98cc8d7e14ddf4479398e19f9ab0aa9849247e0db2c95dd5c9fd1f0edf97a468"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "b264096638e381318ed12603e33258ffa3865c56f4633999d7e9c6a85de66988"
+    },
+    {
+      "path": ".streamlit/config.toml",
+      "sha256": "69a1211086e5165aee19a3c8a5dde1b23f0de60f1b092a0b58acb51eee011b80"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "ab5f01512b86ea8377c5bc3ab350918d7a8b31248903155a2f3c952197ad3289"
+    },
+    {
+      "path": "README.md",
+      "sha256": "5c269ac91eb4a779edcf1805f59168c47423b2a2175dee400ee89ef93ae7c6e0"
+    },
+    {
+      "path": "app.py",
+      "sha256": "f9fd4a251fcd58f2229fe45006db7178e57eefd683bf2b3278594387ee6c172c"
+    },
+    {
+      "path": "backend/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "backend/main.py",
+      "sha256": "c07d6651749a00ced59a21aea77f54a17a155c9892ef8722c86111b3517cf517"
+    },
+    {
+      "path": "config/anexo_xlsx.json",
+      "sha256": "d217d735341e99be18085d5d1d5cc5d5234a0dd7e4821cb9c41927cdd582ebcf"
+    },
+    {
+      "path": "config/costs.json",
+      "sha256": "2e28b2f6416e2cea4e32a319f13deaf97ffb4b425ef9d25fc60524ac074c7d98"
+    },
+    {
+      "path": "config/deployment_propuesto.json",
+      "sha256": "d9e603c2df529885b9e782d2feb88d9b34f0aa8093b40135b11aa6ec515a1afc"
+    },
+    {
+      "path": "config/fase1.json",
+      "sha256": "dff3d1e1d28d81e03c3a32f44dcfc879624d8d472b2b95321014c3c34e339df8"
+    },
+    {
+      "path": "config/governance.json",
+      "sha256": "e13bc17e57e6151bc3d44baa0d85a6fa4406fa77c32599d0fe89a197a25d9421"
+    },
+    {
+      "path": "contexto/clientes_simulados.csv",
+      "sha256": "88f29f5781aed1465bf200763e144570103706e5ea2167ace5d1a738da35accf"
+    },
+    {
+      "path": "contexto/comisiones_por_serie.csv",
+      "sha256": "6f6a78640a1060a4cf05389611411fc253dddac283be49e30153526ae0d2eac3"
+    },
+    {
+      "path": "contexto/fichas_bbva.csv",
+      "sha256": "bb7788f63b0e8b819852a72797074b7948af51f1ac40e0154ec87b49688241f3"
+    },
+    {
+      "path": "datos/predicciones_test.csv",
+      "sha256": "ac1c67489c5f7c0eb9eefdc956829a5c791b5b7c62e9450282475cbcfaaa819b"
+    },
+    {
+      "path": "documentos/Anexo_tecnico.docx",
+      "sha256": "12f58f51972860c2acd8bc8af6aa4589c53aef4465b1fdc0800d1c404d608c2a"
+    },
+    {
+      "path": "documentos/Anexo_tecnico.pdf",
+      "sha256": "5b0cc3b06d5bbb4a8eba3827dafc5a40cd6df9c0467d74918ef0af89208f34f8"
+    },
+    {
+      "path": "documentos/Anexo_tecnico.xlsx",
+      "sha256": "42292094120fb98d5ed6f5dc80b9bd4c59c8e7f60e9b3436a8a7b398e7a14637"
+    },
+    {
+      "path": "documentos/Arquitectura.pdf",
+      "sha256": "510657d1e9e84640584dc5513159fa55f5e79e7b9cff7c8f47c07ac6c9a9b415"
+    },
+    {
+      "path": "documentos/Arquitectura.png",
+      "sha256": "562d2cc75dd63c823af87401a3c61ac9371b547b9b5c7c293dd5f58c1803d310"
+    },
+    {
+      "path": "documentos/FaseI_contexto.md",
+      "sha256": "406ab93a65d50c6ef5fb9926f2deac87563702f85eb014f2126cbb6938f42a21"
+    },
+    {
+      "path": "documentos/Plantilla.docx",
+      "sha256": "d99d656111597077425de725791d1c657bc299b53194e80e4006993cb8123f1e"
+    },
+    {
+      "path": "documentos/Reporte_tecnico.docx",
+      "sha256": "894a2f518943b196aab2303f8f28e4777573a5de546050cd6d27ff5411d6467d"
+    },
+    {
+      "path": "documentos/Reporte_tecnico.pdf",
+      "sha256": "a63567bc3a41a277f460354d534ec35af19d23ab8ea63744735b7af87ad0ae30"
+    },
+    {
+      "path": "documentos/Revision_final.md",
+      "sha256": "1dead696a10a3b8174be2ef37089803ede04033ef6165a6efac133b0a0a8ad6e"
+    },
+    {
+      "path": "documentos/vertice_logo.png",
+      "sha256": "31c34e75c3bc7a74d0d6b3af6f3f4f3a37184418b7aa9edd0b3f3e1bb10f079b"
+    },
+    {
+      "path": "evidencias/actividad8_summary.json",
+      "sha256": "b8b69603f017331ad21df19b71ef241931baf1f1a766cec674abfb28b972de70"
+    },
+    {
+      "path": "evidencias/batching.json",
+      "sha256": "8fd2c3319b0821582b101926166f372ddb360d9b103b010f5639b72b29e85192"
+    },
+    {
+      "path": "evidencias/benchmark.json",
+      "sha256": "3aa3b18fa139930bce3a41e1b6366da24de386e7cde63b97b5dcef6d96505210"
+    },
+    {
+      "path": "evidencias/benchmark_requests.csv",
+      "sha256": "4c56a904b31f49262eee431af071f16379db86fc60fb0b48695fe08b79927f5f"
+    },
+    {
+      "path": "evidencias/benchmark_w1_c1.log",
+      "sha256": "ee408ec1ff3aad3eb2ff2eaea651fb876f5ff9f63e93c3de46a551d42982918a"
+    },
+    {
+      "path": "evidencias/benchmark_w1_c8.log",
+      "sha256": "64cdcee7f4e062389761659a13e382d7166535a03fac671cd43f8766c0f19e05"
+    },
+    {
+      "path": "evidencias/benchmark_w2_c8.log",
+      "sha256": "abab9f04efe900b5b604e5d123bf1f5a41906c9aa0dc56a0a9b7f6a31bc73273"
+    },
+    {
+      "path": "evidencias/costos.json",
+      "sha256": "dcd7c35ad466823298444cd58e07b51c37c100c8b2f9d0c7046134e3ca464b29"
+    },
+    {
+      "path": "evidencias/costos.png",
+      "sha256": "fae00875b62bfcb34047961a7a739f608904905c22c8228b5e7947e27697db75"
+    },
+    {
+      "path": "evidencias/fairness.json",
+      "sha256": "6a6debc78aebc4a0d6c600c2776571687a276a7a3d9fbc11669ea41316f3831a"
+    },
+    {
+      "path": "evidencias/fairness.png",
+      "sha256": "b2d973881edec27918a7141075f55c2fc607169664727bc67ac3b39f447fc279"
+    },
+    {
+      "path": "evidencias/fuentes_fondos.json",
+      "sha256": "610f8cacb57483999149aa388a9cd9346feb2d14c28df3d52aeff41a21a0f062"
+    },
+    {
+      "path": "evidencias/governance_gate.json",
+      "sha256": "f876eb8a02a66f2be7bea1776b5259a0df076f56290299148e8e66f17dbc7248"
+    },
+    {
+      "path": "evidencias/intentos_benchmark.json",
+      "sha256": "8386e294aa08ad4737bce411451b25f04e82292a0947eeeebb0e8cf94f0484c8"
+    },
+    {
+      "path": "evidencias/negocio_fase1.json",
+      "sha256": "9f0c0ce8ec8275ee496a62c70893c9dd39c225d78484fa630eefbaa00bca5597"
+    },
+    {
+      "path": "evidencias/paridad_documentos.json",
+      "sha256": "c5ebff5a224a93d9357be10a29d8b7ea12dd45d0426b7462d104914a50a37277"
+    },
+    {
+      "path": "evidencias/predicciones_auditadas.csv",
+      "sha256": "7a81ee72a3fae969264a226047a44bbfd4801f1c06308678367bb15bb1787a98"
+    },
+    {
+      "path": "evidencias/procedencia.json",
+      "sha256": "708f7032717fe15be77b10f7443ab2305d79f38c198bae264f1b9e2b6aa53a11"
+    },
+    {
+      "path": "evidencias/rendimiento.png",
+      "sha256": "0c8bc3d55341148cfeb4bf43cde576b045093200f2f080b2f40648a449b7199b"
+    },
+    {
+      "path": "evidencias/revision_editorial.json",
+      "sha256": "91560596aedf50ae4ee235d8c778f389456ce1a1d4e870897cdc463866f926fc"
+    },
+    {
+      "path": "evidencias/validacion_xlsx.json",
+      "sha256": "ae49c4b6d00f9dc477a6f64d20bfc299b2e5be36b261dab4cc881b73e5f444cb"
+    },
+    {
+      "path": "modelos/LICENSE_DATASET.txt",
+      "sha256": "fa4f941ef92f40d55dd34ddea45d96a20672607d152698bc160f8db3af5e36c7"
+    },
+    {
+      "path": "modelos/manifest.json",
+      "sha256": "eb4fc6dece9a89a451f0b3dfc9de00eead6ad5bec4421c39650c932b8f90a0e6"
+    },
+    {
+      "path": "modelos/modelo_SVM_calibrada.joblib",
+      "sha256": "f48c7496d5a12bd15d535721e3e83c6ef895b1ae7eaccbe7f4f4c60705bb1916"
+    },
+    {
+      "path": "pruebas/test_app.py",
+      "sha256": "bc27b814483a46fa795b678874491fb3182a44110580b0527f44028e96d38eaf"
+    },
+    {
+      "path": "pruebas/test_controls.py",
+      "sha256": "7de3762b411d22ea58e6494a61cb2c06c8ca7f2870a42e2253b71db4e85ff893"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "00362721a91463becf35b55442a47e6b53680db1dc137c00f523b78e4eff295d"
+    },
+    {
+      "path": "scripts/analyze.py",
+      "sha256": "eab72822e031c4e086c8e77383199e1a02164382b4199f38627b79c0fc118692"
+    },
+    {
+      "path": "scripts/benchmark.py",
+      "sha256": "f84521a153b0b4436f4a28b4a4f1337fa53891e04729b2d54a4bced2dc897ce8"
+    },
+    {
+      "path": "scripts/build_reports.py",
+      "sha256": "08c8505371e635dbfcd054dcb35991524a8ab58505e8fba335055b0189d928dd"
+    },
+    {
+      "path": "scripts/build_xlsx.mjs",
+      "sha256": "aaa7cc6cd623bd3e265d4daa92dca3dde9b6e184d2d18e4ea7ebfde08f7d2d80"
+    },
+    {
+      "path": "scripts/business_context.py",
+      "sha256": "057d7262854a2634897d0738f8d081b4c8f5b6ba5ed7c5c21ee5295aba71fbe5"
+    },
+    {
+      "path": "scripts/check_fund_sources.py",
+      "sha256": "28cebec13bbb666eeb2392181af2389cf6ea89c37befa8d4eddd8ab6f66b3da1"
+    },
+    {
+      "path": "scripts/costs.py",
+      "sha256": "aabdba3a3f5e7adec861ad118ea298a5b0cf3b8896267f381708933960494f0f"
+    },
+    {
+      "path": "scripts/figures.py",
+      "sha256": "2a1b77ca57aff809e6fa66b8e8c2affbdc62c224299d9a7c6eb530d74ac61678"
+    },
+    {
+      "path": "scripts/governance.py",
+      "sha256": "4c7347660d922f4e0618dae63debc02d08b1b351c7c3d562226b82735457c8bc"
+    },
+    {
+      "path": "scripts/revision_sections.py",
+      "sha256": "85fbc0433e824a76a266cbe9e3ceae6397567f3c3a46ec5b7c7af42ba6795144"
+    },
+    {
+      "path": "scripts/validate_delivery.py",
+      "sha256": "8686dbdaca14be5386af30c46fa6008cd86fbee805b47b8b4b35a94404c9b44c"
+    },
+    {
+      "path": "scripts/verify.py",
+      "sha256": "6e3aa807550d1a37752ad4c149d2c16e1b23eeadbba6ead70b03f54c59475f30"
+    }
+  ],
+  "validation": {
+    "tests_passed": 11,
+    "original_paragraphs_preserved": 140,
+    "historical_evidence": "unchanged",
+    "review_date": "2026-11-21"
+  }
+}
