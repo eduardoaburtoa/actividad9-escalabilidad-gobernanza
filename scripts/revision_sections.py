@@ -36,3 +36,21 @@ def frameworks(d,h,p,tab,root):
  ['NIST AI RMF · Manage','Canario, pausa y rollback propuestos; evidencia operativa de Actividad 8','Conservar incidente, responsable y criterio de recuperación.'],
  ['ISO/IEC 42001 · sistema de gestión','Registro de riesgos, responsables, evaluación de impacto, seguimiento y revisión de cambios','Propuesta de controles del ciclo de vida; no certificación ni auditoría de conformidad.']])
  p(d,'CC BY-NC-SA 3.0 restringe el uso comercial del corpus. Mantengo el bloqueo comercial hasta que jurídico resuelva los derechos del dato y del modelo derivado o se sustituya el corpus con nueva validación. NIST AI RMF e ISO/IEC 42001 son referencias de trabajo; no sustituyen obligaciones legales mexicanas ni acreditan cumplimiento institucional.')
+
+
+def performance_blocks(d,h,p,tab,root):
+ import json
+ import pandas as pd
+ runs=json.loads((root/'evidencias/benchmark.json').read_text())['runs']
+ h(d,'Latencia (p50, p95, p99)')
+ tab(d,['Procesos / concurrencia / rep','p50 ms','p95 ms','p99 ms'],[[f"{x['workers']}/{x['concurrency']}/{x['repeat']+1}"]+[f"{x[k]:.3f}" for k in ['p50_ms','p95_ms','p99_ms']] for x in runs])
+ p(d,'Percentiles cliente HTTP de cada repetición completa; no incluyen warmup ni red externa. El p99 refleja la cola observada en una prueba corta, no un compromiso contractual.')
+ d.add_page_break();h(d,'Throughput (solicitudes por segundo)')
+ g=pd.DataFrame(runs).groupby(['workers','concurrency']).mean(numeric_only=True)
+ tab(d,['Procesos / concurrencia','Media solicitudes/s','Lectura'],[[f'{a}/{b}',f'{x.throughput_rps:.2f}','Media de tres repeticiones locales'] for (a,b),x in g.iterrows()])
+ p(d,'Cada corrida divide sus 4,520 respuestas entre su duración. No extrapolo estas tasas de ráfaga a demanda mensual sostenida. El objetivo cloud de 10 solicitudes/s por una hora sigue sin validar.')
+ h(d,'Uso de recursos (CPU y memoria)')
+ tab(d,['Procesos / concurrencia','CPU observada, núcleos equivalentes','RSS observado, MiB'],[[f'{a}/{b}',f'{x.cpu_core_equivalents:.3f}',f'{x.peak_rss_mib:.2f}'] for (a,b),x in g.iterrows()])
+ p(d,'Los valores son medias de CPU total y de picos RSS de los procesos servidor en un host con 10 CPU lógicas y 16 GiB. No se aislaron recursos ni se midió memoria por réplica cloud; no reparto artificialmente el agregado entre procesos. La suma RSS puede duplicar páginas compartidas.')
+ tab(d,['Aprovisionamiento propuesto por réplica','CPU','Memoria GiB','Estado'],[['Base cloud simulada',2,4,'Sin medición con cuotas'],['Rediseño y piloto',1,1,'Sin medición por réplica cloud']])
+ p(d,'Comparar recursos observados y aprovisionados orienta el ensayo futuro, pero no prueba que una réplica de 1 CPU sostenga la concurrencia objetivo. Debo medir saturación, memoria y latencia con límites efectivos antes de aprobar el cambio.')
