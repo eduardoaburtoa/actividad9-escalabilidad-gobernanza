@@ -43,7 +43,16 @@ def tab(d,heads,rows):
  d.add_paragraph()
 def img(d,path,caption,width=6):d.add_picture(str(path),width=Inches(width));p(d,caption)
 def reference(d,text):
- pa=d.add_paragraph(text)
+ pa=d.add_paragraph()
+ import re
+ m=re.search(r'\((?:\d{4}[^)]*|s\. f\.)\)\. ',text)
+ if m:
+  end=m.end();tail=text[end:];positions=[i for token in ['. https://','. Tarifas consultadas'] if (i:=tail.find(token))>=0]
+  cut=min(positions) if positions else len(tail)
+  if text.startswith('Malo,'):
+   title='Journal of the Association for Information Science and Technology, 65';before,after=text.split(title,1);pa.add_run(before);pa.add_run(title).italic=True;pa.add_run(after)
+  else:pa.add_run(text[:end]);pa.add_run(tail[:cut]).italic=True;pa.add_run(tail[cut:])
+ else:pa.add_run(text)
  pa.paragraph_format.left_indent=Inches(0.3)
  pa.paragraph_format.first_line_indent=Inches(-0.3)
  pa.paragraph_format.space_after=Pt(8)
@@ -64,11 +73,12 @@ refs=[
 'Malo, P., Sinha, A., Korhonen, P., Wallenius, J., & Takala, P. (2014). Good debt or bad debt: Detecting semantic orientations in economic texts. Journal of the Association for Information Science and Technology, 65(4), 782–796. https://doi.org/10.1002/asi.23062',
 'Universidad Tecmilenio. (2026). Temas 21 y 22 y rúbrica de la Actividad 9 [Material del curso].'
 ]
+refs=sorted(refs,key=str.casefold)
 d=base('Escalabilidad y gobernanza responsable del asistente de portafolios')
 h(d,'Decisión y alcance')
 p(d,'Propongo escalar el servicio de clasificación de noticias con réplicas pequeñas y conservar una aprobación humana antes de cualquier decisión de inversión. El análisis estima una reducción de 42.59 % en infraestructura frente a una base cloud simulada. La prueba HTTP local procesó 40,680 solicitudes sin errores y mantuvo las predicciones; estos resultados no acreditan disponibilidad mensual ni capacidad en nube.')
 p(d,'Desde mi enfoque de banquero Sr., la eficiencia sólo tiene valor si mejora la preparación de la revisión y protege al cliente. Por ello, mi decisión es continuar en un entorno académico. El uso productivo permanece bloqueado hasta resolver licenciamiento, validación en español y México, privacidad, pruebas cloud y evidencia de fairness demográfica.')
-p(d,'Doy continuidad a la SVM calibrada de Actividades 5 y 6, a la API de Fase II y a los aprendizajes operativos de Actividad 8. No vuelvo a entrenar ni a seleccionar el modelo con el test. La clase positiva identifica noticia negativa en inglés; no predice rendimientos ni recomienda comprar o vender fondos.')
+p(d,'Mi cadena empieza en Fase I: business case, ROI esperado y alcance de 3,600 clientes. Sigue por Actividad 4, Actividad 5, Actividad 6, Fase II, Actividad 8 y Actividad 9. No consta una Actividad 7 publicada en esta cadena; no invento el motivo ni renombro Fase II. Doy continuidad a la SVM calibrada de Actividades 5 y 6, a la API de Fase II y a los aprendizajes operativos de Actividad 8. No vuelvo a entrenar ni a seleccionar el modelo con el test. La clase positiva identifica noticia negativa en inglés; no predice rendimientos ni recomienda comprar o vender fondos.')
 tab(d,['Entregable','Contenido verificable'],[['Reporte técnico','Arquitectura, rediseño, FinOps, auditoría y plan de aprobación'],['Anexo técnico','Nueve corridas HTTP, costos, calidad y brechas por longitud'],['Arquitectura PNG y PDF','Estado local actual y nube propuesta claramente separados'],['Repositorio y Streamlit','Scripts, configuraciones, datos de evidencia y exploración de resultados']])
 page(d,'Arquitectura actual y diagnóstico')
 p(d,'El sistema integra Streamlit, FastAPI y un pipeline TF IDF con SVM calibrada. La API verifica la integridad del archivo de modelo y exige una clave de servicio; expone salud, descripción del modelo e inferencia. Fase II comprobó integración y contenedorización local. No atribuyo a ese antecedente un despliegue cloud público que no consta en la evidencia.')
