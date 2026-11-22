@@ -6,16 +6,18 @@
 
 Como banquero Sr., propongo escalar la preparación de revisiones de portafolio con costos transparentes, evidencia técnica y revisión humana. Esta entrega analiza el servicio heredado y propone su evolución; **la nube es un escenario simulado y la producción sigue bloqueada**.
 
-## Empieza aquí
+## Guía de entregables y resultados
 
-| Entregable | Consulta | Editable |
-|---|---|---|
-| Reporte técnico · 18 páginas | [PDF](documentos/Reporte_tecnico.pdf) | [Word](documentos/Reporte_tecnico.docx) |
-| Anexo técnico · 12 páginas | [PDF](documentos/Anexo_tecnico.pdf) | [Word](documentos/Anexo_tecnico.docx) |
-| Costos con fórmulas vivas | [Excel](documentos/Anexo_tecnico.xlsx) | Cuatro hojas; supuestos ámbar editables |
-| Arquitectura actual y propuesta | [Imagen](documentos/Arquitectura.png) | [PDF](documentos/Arquitectura.pdf) |
-| Tablero interactivo | [Streamlit](app.py) | Instrucciones abajo |
-| Evidencia reproducible | [Resultados](evidencias) | [Scripts](scripts) |
+**Revisión de presentación: 21 de noviembre de 2026.**
+
+| Entregable | Lectura directa |
+|---|---|
+| Reporte técnico | [Escalabilidad, FinOps y gobernanza](documentos/01-reporte-tecnico/README.md) |
+| Anexo técnico | [Costos, desempeño y fairness](documentos/02-anexo-tecnico/README.md) |
+| Arquitectura | [Sistema actual y propuesto](documentos/03-arquitectura/README.md) |
+| Tablero interactivo | [Streamlit](app.py), instrucciones de ejecución abajo |
+| Evidencia reproducible | [Resultados](evidencias/README.md) · [Scripts](scripts/README.md) |
+| Descargas y archivos editables | [Índice documental, PDF, Word y Excel](documentos/README.md) |
 
 **Google Docs:** [Reporte editable](https://docs.google.com/document/d/1cMp3WDCrJkl1x_W6ingDuwyoSVslExBId_ULa-wSJVs/edit) · [Anexo editable](https://docs.google.com/document/d/12Pbozhz5y7g3ldfxwKvP_1mU0_0ilrX4OxzmVmfxns4/edit)
 
@@ -106,3 +108,8 @@ Mi decisión es avanzar por etapas y mantener revisión humana: eficiencia econ�
 ## Revisión final 1.1.0
 
 [Detalle de las siete ramas, pruebas y cambios](documentos/Revision_final.md) · [Conteo antes/después e integridad](evidencias/revision_editorial.json) · [Validación de fórmulas](evidencias/validacion_xlsx.json). Los Google Docs conservan sus enlaces y se comprobaron en incógnito con acceso de lector; sólo su propietario conserva edición.
+
+
+## Revisión e integridad del repositorio
+
+Cada carpeta incluye una guía de uso. El [inventario de revisión](evidencias/revision_2026_11_21.json) identifica los archivos originales mediante SHA-256. Revisar un archivo hoy no cambia la fecha de su experimento: modelos, datos, mediciones y tarifas conservan su procedencia.

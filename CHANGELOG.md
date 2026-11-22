@@ -1,3 +1,10 @@
+## 2026-11-21 · Documentación y navegación
+
+- Reporte y anexo completos en README, con índices, tablas y figuras.
+- Guías de contenido en todas las carpetas y acceso directo desde Streamlit.
+- Inventario SHA-256 de todos los archivos originales; evidencia histórica preservada.
+- Sin nuevas mediciones de carga ni actualización de tarifas.
+
 # Historial
 
 ## 1.1.0 · 2026-11-09
