@@ -54,3 +54,18 @@ def performance_blocks(d,h,p,tab,root):
  p(d,'Los valores son medias de CPU total y de picos RSS de los procesos servidor en un host con 10 CPU lógicas y 16 GiB. No se aislaron recursos ni se midió memoria por réplica cloud; no reparto artificialmente el agregado entre procesos. La suma RSS puede duplicar páginas compartidas.')
  tab(d,['Aprovisionamiento propuesto por réplica','CPU','Memoria GiB','Estado'],[['Base cloud simulada',2,4,'Sin medición con cuotas'],['Rediseño y piloto',1,1,'Sin medición por réplica cloud']])
  p(d,'Comparar recursos observados y aprovisionados orienta el ensayo futuro, pero no prueba que una réplica de 1 CPU sostenga la concurrencia objetivo. Debo medir saturación, memoria y latencia con límites efectivos antes de aprobar el cambio.')
+
+
+def performance_report(d,h,p,tab,root):
+ import json,statistics
+ runs=json.loads((root/'evidencias/benchmark.json').read_text())['runs']
+ h(d,'Síntesis de latencia, throughput y uso de recursos')
+ rows=[]
+ for workers,concurrency in sorted({(r['workers'],r['concurrency']) for r in runs}):
+  group=[r for r in runs if (r['workers'],r['concurrency'])==(workers,concurrency)]
+  mean=lambda key:statistics.mean(r[key] for r in group)
+  rows.append([f'{workers} / {concurrency}',f"{mean('p50_ms'):.2f} / {mean('p95_ms'):.2f} / {mean('p99_ms'):.2f}",f"{mean('throughput_rps'):.1f}",f"{mean('cpu_core_equivalents'):.3f}",f"{mean('peak_rss_mib'):.1f}"])
+ tab(d,['Procesos / concurrencia','Latencia p50 / p95 / p99 ms','Throughput solicitudes/s','CPU núcleos equivalentes','RSS agregado MiB'],rows)
+ p(d,'Integro latencia, throughput y uso de recursos con medias de tres repeticiones por configuración. Los percentiles son medias de percentiles por corrida, no percentiles de todas las solicitudes juntas. CPU expresa núcleos equivalentes ocupados por el servicio y RSS el máximo muestreado agregado del servidor; el archivo no desglosa CPU ni RSS por proceso. No presento un promedio dividido entre procesos como si fuera una medición individual. Ese desglose queda pendiente para dimensionar cada réplica con cuotas reales.')
+ p(d,'Mi lectura FinOps une dos evidencias de alcance distinto: dos procesos y concurrencia ocho entregaron 1,270.8 solicitudes/s y p95 medio 9.08 ms en el host local; la propuesta cloud de dos réplicas de una CPU y un GiB estima USD 170.05/mes de infraestructura. Esta comparación justifica probar el dimensionamiento, pero no demuestra que USD 170.05 compren aquella capacidad en nube. Condiciono el ahorro a validar diez solicitudes/s, p95 ≤250 ms y el objetivo mensual de 99.9 % antes de comprometer el SLA con negocio.')
+ p(d,'Conservo la salvedad de benchmark.json: carga cerrada en loopback, cliente y servidor en el mismo host, sesiones persistentes y veinte warmups excluidos por configuración. RSS suma procesos y puede contar páginas compartidas. Las repeticiones de 3.51 a 8.01 s no prueban carga sostenida; no hay autoscaling ni SLA mensual observado. Dos procesos en un host no son escalado horizontal de nube.')

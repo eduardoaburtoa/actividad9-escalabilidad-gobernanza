@@ -6,7 +6,7 @@ from docx.shared import Inches,Pt,RGBColor
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pandas as pd
-from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks
+from revision_sections import scaling, business, fairness_report, frameworks, performance_blocks, performance_report
 R=Path(__file__).resolve().parents[1];E=R/'evidencias';O=R/'documentos';T=O/'Plantilla.docx'
 b=json.loads((E/'benchmark.json').read_text());f=json.loads((E/'fairness.json').read_text());c=json.loads((E/'costos.json').read_text());g=pd.DataFrame(b['runs']).groupby(['workers','concurrency']).mean(numeric_only=True)
 def replace(el,s):
@@ -99,6 +99,8 @@ img(d,E/'rendimiento.png','Figura 2. Medias de tres repeticiones por configuraci
 tab(d,['Procesos / concurrencia','Solicitudes por segundo','p95 medio ms','RSS medio MiB'],[[f'{a} / {z}',f'{r.throughput_rps:.1f}',f'{r.p95_ms:.2f}',f'{r.peak_rss_mib:.1f}'] for (a,z),r in g.iterrows()])
 p(d,'Cada repetición ejecutó 4,520 solicitudes sobre las mismas 452 noticias; duró entre 3.51 y 8.01 segundos. El host ARM dispone de diez CPU lógicas y 16 GiB. Cliente y servidor comparten equipo, la carga es cerrada y se excluyen veinte warmups por configuración. No medí WAN, cold starts, sostenimiento por una hora ni fallas de infraestructura. RSS suma procesos y puede duplicar páginas compartidas.')
 p(d,'Defino como objetivos propuestos disponibilidad mensual de 99.9 % y p95 ≤250 ms a diez solicitudes por segundo. El presupuesto temporal es 43.2 minutos en treinta días. Es un SLO de diseño, no un SLA contractual demostrado. Antes de aprobar el piloto exigiré una hora de carga, ráfagas, pérdida de réplica y medición desde otra máquina; el SLA formal deberá acordarse con negocio y proveedor.')
+page(d,'Síntesis de desempeño y costo')
+performance_report(d,h,p,tab,R)
 page(d,'Costos y decisiones FinOps')
 img(d,E/'costos.png','Figura 3. Infraestructura mensual estimada en USD. El escenario máximo supera el presupuesto propuesto.')
 tab(d,['Escenario','Infra USD','TCO USD','Ahorro infra'],[[s['name'],f"{s['infra_usd']:.2f}",f"{s['tco_usd']:.2f}",f"{s['infra_saving_percent']:.2f} %"] for s in c['scenarios']])
