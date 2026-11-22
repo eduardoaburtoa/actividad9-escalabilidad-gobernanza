@@ -69,3 +69,22 @@ def performance_report(d,h,p,tab,root):
  p(d,'Integro latencia, throughput y uso de recursos con medias de tres repeticiones por configuración. Los percentiles son medias de percentiles por corrida, no percentiles de todas las solicitudes juntas. CPU expresa núcleos equivalentes ocupados por el servicio y RSS el máximo muestreado agregado del servidor; el archivo no desglosa CPU ni RSS por proceso. No presento un promedio dividido entre procesos como si fuera una medición individual. Ese desglose queda pendiente para dimensionar cada réplica con cuotas reales.')
  p(d,'Mi lectura FinOps une dos evidencias de alcance distinto: dos procesos y concurrencia ocho entregaron 1,270.8 solicitudes/s y p95 medio 9.08 ms en el host local; la propuesta cloud de dos réplicas de una CPU y un GiB estima USD 170.05/mes de infraestructura. Esta comparación justifica probar el dimensionamiento, pero no demuestra que USD 170.05 compren aquella capacidad en nube. Condiciono el ahorro a validar diez solicitudes/s, p95 ≤250 ms y el objetivo mensual de 99.9 % antes de comprometer el SLA con negocio.')
  p(d,'Conservo la salvedad de benchmark.json: carga cerrada en loopback, cliente y servidor en el mismo host, sesiones persistentes y veinte warmups excluidos por configuración. RSS suma procesos y puede contar páginas compartidas. Las repeticiones de 3.51 a 8.01 s no prueban carga sostenida; no hay autoscaling ni SLA mensual observado. Dos procesos en un host no son escalado horizontal de nube.')
+
+
+def inference_optimization(d,h,p,tab,root):
+ import json,statistics
+ runs=json.loads((root/'evidencias/batching.json').read_text())['runs']
+ h(d,'Optimización de la inferencia')
+ rows=[]
+ for size in sorted({r['batch_size'] for r in runs}):
+  group=[r for r in runs if r['batch_size']==size]
+  rows.append([size,f"{statistics.mean(r['throughput_texts_second'] for r in group):.1f}",f"{statistics.mean(r['amortized_ms_text'] for r in group):.4f}",len(group)])
+ tab(d,['Batch o lote','Throughput textos/s','Latencia amortizada ms/texto','Repeticiones'],rows)
+ p(d,'La optimización de la inferencia por batch agrupa la vectorización y la predicción. Los lotes de 32 y 128 mejoran el throughput frente a uno, conservando las probabilidades. Sólo medí esos tres tamaños: no existe evidencia para afirmar a partir de qué lote deja de compensar. El tamaño 128 es el mayor evaluado, no un óptimo demostrado; ampliar el rango y medir memoria, cola y rendimiento marginal queda como prueba futura.')
+ p(d,'El ensayo offline incluye vectorización e inferencia, sin HTTP ni tiempo de espera para reunir textos. Tiene cinco repeticiones por tamaño en orden fijo, con posible calentamiento. La latencia amortizada no es el p95 de un banquero esperando respuesta. Mantengo la ruta interactiva sin espera de lote y no traslado esta aceleración al SLA ni al ahorro cloud.')
+ tab(d,['Palanca considerada','Efecto esperado','Esfuerzo relativo propuesto','Evidencia pendiente y decisión'],[
+ ['Cuantización','Menor memoria o cómputo, con posible variación de probabilidades','Alto: compatibilidad y recalibración de evaluación','No medida; descartada para esta entrega. Exigir paridad y calidad antes de sustituir el artefacto.'],
+ ['Exportación ONNX','Portabilidad y posible reducción del tiempo de inferencia','Medio/alto: conversión de TF IDF y SVM calibrada','No medida; falta compatibilidad, memoria, latencia y paridad end-to-end. No incorporada.'],
+ ['Caché por texto repetido','Evitar inferencias repetidas sobre noticias públicas','Medio: clave, TTL, invalidación y protección','No medida; falta hit rate real, costo de almacenamiento y riesgo de obsolescencia. No contabilizo ahorro.'],
+ ['Lotes asíncronos','Aprovechar throughput offline para preparación programada','Medio: cola, reintentos e idempotencia','Batch local medido; orquestación asíncrona no implementada. Primera propuesta para prueba controlada.']])
+ p(d,'Probaría primero lotes asíncronos para preparar revisiones programadas, sin retrasar la consulta interactiva. Mediría tiempo total desde entrada a cola hasta resultado, p95 de espera, memoria máxima, fallos, duplicados y costo por mil textos bajo cuotas cloud. El ensayo debe conservar el hash del modelo y las probabilidades. Las otras palancas fueron consideradas y pospuestas; no presento sus efectos esperados como beneficios observados.')
