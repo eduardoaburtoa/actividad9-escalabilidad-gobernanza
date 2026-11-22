@@ -39,6 +39,8 @@ with tabs[3]:
  st.write('NIST AI RMF e ISO 42001 se usan como referencias, sin afirmar certificación. La revisión humana es obligatoria; el modelo clasifica noticias en inglés, no ejecuta órdenes.')
 with tabs[4]:
  st.write('Reporte y anexo incluyen métodos, supuestos, riesgos, responsables y referencias.')
+ for label, section in [('Reporte técnico', '01-reporte-tecnico'), ('Anexo técnico', '02-anexo-tecnico'), ('Arquitectura', '03-arquitectura')]:
+  st.link_button(label, f'https://github.com/eduardoaburtoa/actividad9-escalabilidad-gobernanza/tree/main/documentos/{section}')
  for name in ['Reporte_tecnico.pdf','Reporte_tecnico.docx','Anexo_tecnico.pdf','Anexo_tecnico.docx','Anexo_tecnico.xlsx','Arquitectura.pdf']:
   path=R/'documentos'/name
   if path.exists():st.download_button(name,path.read_bytes(),file_name=name)
